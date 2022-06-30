@@ -19,4 +19,8 @@ router.get("/api/csrf/restore", (req, res) => {
     });
 });
 
+router.get('/', (req, res) => {
+    return res.json({ message: 'app is running' })
+});
+
 module.exports = router;

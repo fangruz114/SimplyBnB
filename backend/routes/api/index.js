@@ -35,8 +35,4 @@ router.get('/require-auth', requireAuth, (req, res) => {
     return res.json(req.user);
 });
 
-router.get('/', (req, res) => {
-    return res.json({ message: 'app is running' })
-});
-
 module.exports = router;
