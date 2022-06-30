@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![db-schema]
 
 ## API Documentation
 
@@ -1359,3 +1359,4 @@ Return spots filtered by query parameters.
       }
     }
     ```
+[db-schema]: https://previews.dropbox.com/p/thumb/ABns-yFT_sKnvFDbtOxsVmxwsWZPlBKE-l2zsHsTZy8QGsXMZv6PSuxcXJE1hlxZbrYXMkzLpJBC_ar95C-I0ZDA0iKdhKq_DccrZvLFaP1mI8XoSg79z7-FeIRwwXFnqXumpDRtQTe87bT8uCbogzQgkDALuvr10_AbntFzlMeBhTerj6sZRZjFYYV_uDAj3BsDDlM0qyBzLbI3DrYMXbqh01S5kf-P27Qq3VJziBCmDRDG0W5ZtIZVfwsF5pfuvprwZTG6enxaw67kdoXDem2cQE-xuvsbEK8M1HlcSkBs-h7Ug-NvUOVlnrMMPdPaje8NeaYxC6KcHHa32niBIhFtCM0SxMX6Tacm97-vrRfA9hUCL5d2_fxTgEUCrvAMBI8/p.png
