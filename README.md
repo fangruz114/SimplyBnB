@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![AirBnB](https://user-images.githubusercontent.com/101694480/176610070-1281aa94-51b5-4260-917f-23c5368bdd8b.png)
+![AirBnB](https://user-images.githubusercontent.com/101694480/176782131-ef546288-80b3-41ea-aea5-d1277d8c7ada.png)
 
 ## API Documentation
 
@@ -547,7 +547,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /reviews/:userId
+  * URL: /users/:userId/reviews
   * Body: none
 
 * Successful Response
@@ -1294,7 +1294,7 @@ Return spots filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /spots?page=2&&size=10&&minPrice=90
+  * URL: /spots
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20
@@ -1359,4 +1359,3 @@ Return spots filtered by query parameters.
       }
     }
     ```
-[db-schema]: https://previews.dropbox.com/p/thumb/ABns-yFT_sKnvFDbtOxsVmxwsWZPlBKE-l2zsHsTZy8QGsXMZv6PSuxcXJE1hlxZbrYXMkzLpJBC_ar95C-I0ZDA0iKdhKq_DccrZvLFaP1mI8XoSg79z7-FeIRwwXFnqXumpDRtQTe87bT8uCbogzQgkDALuvr10_AbntFzlMeBhTerj6sZRZjFYYV_uDAj3BsDDlM0qyBzLbI3DrYMXbqh01S5kf-P27Qq3VJziBCmDRDG0W5ZtIZVfwsF5pfuvprwZTG6enxaw67kdoXDem2cQE-xuvsbEK8M1HlcSkBs-h7Ug-NvUOVlnrMMPdPaje8NeaYxC6KcHHa32niBIhFtCM0SxMX6Tacm97-vrRfA9hUCL5d2_fxTgEUCrvAMBI8/p.png
