@@ -11,23 +11,79 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Spot.belongsTo(models.User, {
+        foreignKey: 'ownerId',
+      });
+      Spot.hasMany(models.Review, {
+        foreignKey: 'spotId',
+        onDelete: 'CASCADE',
+        hooks: true,
+      });
+      Spot.hasMany(models.Image, {
+        foreignKey: 'spotId',
+        onDelete: 'CASCADE',
+        hooks: true,
+      });
     }
   }
   Spot.init({
-    ownerId: DataTypes.INTEGER,
-    address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    country: DataTypes.STRING,
-    lat: DataTypes.DECIMAL,
-    lng: DataTypes.DECIMAL,
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    price: DataTypes.DECIMAL,
-    previewImage: DataTypes.STRING
+    ownerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
+      validate: {
+        len: [2, 20]
+      }
+    },
+    state: {
+      type: DataTypes.STRING(15),
+      allowNull: false,
+      validate: {
+        len: [2, 15]
+      }
+    },
+    country: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    lat: {
+      type: DataTypes.DECIMAL(11, 7),
+      allowNull: false,
+    },
+    lng: {
+      type: DataTypes.DECIMAL(11, 7),
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+    price: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
+    previewImage: {
+      type: DataTypes.STRING,
+    },
   }, {
     sequelize,
     modelName: 'Spot',
+    indexes: [
+      {
+        unique: true,
+        fields: ['lat', 'lng']
+      }
+    ],
   });
   return Spot;
 };

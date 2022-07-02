@@ -17,23 +17,51 @@ module.exports = {
       {
         firstName: 'Demo',
         lastName: 'Demo',
-        username: 'Demo-lition',
-        email: 'demo@user.io',
+        username: 'DemoUser',
+        email: 'demo@demo.io',
         hashedPassword: bcrypt.hashSync('password')
       },
       {
-        firstName: 'usera',
-        lastName: 'usera',
-        username: 'FakeUser1',
-        email: 'user1@user.io',
+        firstName: 'Chris',
+        lastName: 'Hanley',
+        username: 'chanley',
+        email: 'Chris.Hanley@example.com',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
-        firstName: 'userb',
-        lastName: 'userb',
-        username: 'FakeUser2',
-        email: 'user2@user.io',
+        firstName: 'Riley',
+        lastName: 'Curry',
+        username: 'rcurry',
+        email: 'Riley.Curry@example.com',
         hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        firstName: 'Matt',
+        lastName: 'Maya',
+        username: 'mmaya',
+        email: 'matt.maya@example.com',
+        hashedPassword: bcrypt.hashSync('password4')
+      },
+      {
+        firstName: 'Baker',
+        lastName: 'Smith',
+        username: 'bsmith',
+        email: 'Baker.Smith@example.com',
+        hashedPassword: bcrypt.hashSync('password5')
+      },
+      {
+        firstName: 'Clark',
+        lastName: 'Johnson',
+        username: 'cjohnson',
+        email: 'Clark.Johnson@example.com',
+        hashedPassword: bcrypt.hashSync('password6')
+      },
+      {
+        firstName: 'Davis',
+        lastName: 'Williams',
+        username: 'dwilliams',
+        email: 'Davis.Williams@example.com',
+        hashedPassword: bcrypt.hashSync('password7')
       },
     ], {});
   },
@@ -47,7 +75,7 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+      username: { [Op.in]: ['DemoUser', 'chanley', 'rcurry', 'mmaya', 'bsmith', 'cjohnson', 'dwilliams'] }
     }, {});
   }
 };
