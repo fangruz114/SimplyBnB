@@ -9,8 +9,17 @@ const { application } = require('express');
 
 const router = express.Router();
 
-router.get('/:id', async (req, res) => {
-    const spot = await Spot.findByPk(req.params.id, {
+router.get('/:id', async (req, res, next) => {
+    let spot = await Spot.findByPk(req.params.id);
+    if (!spot) {
+        const err = new Error('Spot couldn\'t be found');
+        err.status = 404;
+        err.message = 'Spot couldn\'t be found';
+        err.title = 'Spot couldn\'t be found';
+        err.error = ['Spot couldn\'t be found'];
+        next(err);
+    }
+    spot = await Spot.findByPk(req.params.id, {
         include: [{
             model: Review,
             attributes: [],
@@ -28,14 +37,6 @@ router.get('/:id', async (req, res) => {
             [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgStarRating']
         ],
     });
-    if (!spot) {
-        const err = new Error('Spot couldn\'t be found');
-        err.status = 404;
-        err.message = 'Spot couldn\'t be found';
-        err.title = 'Spot couldn\'t be found';
-        err.error = ['Spot couldn\'t be found'];
-        next(err);
-    }
     return res.json(spot);
 });
 
