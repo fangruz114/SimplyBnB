@@ -21,7 +21,7 @@ module.exports = {
         lat: 40.7367000,
         lng: -73.9963200,
         name: 'Architectural wonder in the woods',
-        description: 'Unique experience ! Clean, Sanitize and secluded. Enjoy a weekend or a few days eco-friendly retreat in an architectural, geometric masterpiece on 30 preserved acres just minutes from all that Rhinebeck and the Hudson Valley have to offer. The house is an open plan, and though it has zero bedrooms, it can sleep 3!',
+        description: 'Enjoy a weekend or a few days eco-friendly retreat in an architectural, geometric masterpiece.',
         price: 468.98,
         previewImage: 'https://a0.muscache.com/im/pictures/323b2430-a7fa-44d7-ba7a-6776d8e682df.jpg?im_w=1200',
       },
