@@ -12,10 +12,10 @@ const validateLogin = [
     check('credential')
         .exists({ checkFalsy: true })
         .notEmpty()
-        .withMessage('Please provide a valid email or username.'),
+        .withMessage('Email is required'),
     check('password')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a password.'),
+        .withMessage('Password is required'),
     handleValidationErrors
 ];
 
@@ -27,7 +27,7 @@ router.post('/', validateLogin, async (req, res, next) => {
         const err = new Error('login failed');
         err.status = 401;
         err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
+        err.errors = ['Invalid credentials'];
         return next(err);
     };
 
@@ -41,10 +41,10 @@ router.delete('/', (_req, res) => {
     return res.json({ message: 'success' });
 });
 
-router.get('/', restoreUser, (req, res) => {
+router.get('/', restoreUser, requireAuth, (req, res) => {
     const { user } = req;
     if (user) {
-        return res.json({ user: user.toSafeObject() });
+        return res.json(user.toSafeObject());
     } else return res.json({});
 });
 
