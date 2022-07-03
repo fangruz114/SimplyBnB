@@ -40,7 +40,6 @@ router.get('/:userId/spots', requireAuth, async (req, res, next) => {
         err.status = 403;
         err.title = "Forbidden";
         err.message = "Forbidden";
-        err.errors = ['Forbidden'];
         next(err);
     }
 

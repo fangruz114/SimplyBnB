@@ -57,10 +57,18 @@ module.exports = (sequelize, DataTypes) => {
     lat: {
       type: DataTypes.DECIMAL(11, 7),
       allowNull: false,
+      validate: {
+        min: -90,
+        max: 90,
+      }
     },
     lng: {
       type: DataTypes.DECIMAL(11, 7),
       allowNull: false,
+      validate: {
+        min: -180,
+        max: 180
+      }
     },
     name: {
       type: DataTypes.STRING(50),
@@ -85,6 +93,11 @@ module.exports = (sequelize, DataTypes) => {
         fields: ['lat', 'lng']
       }
     ],
+    defaultScope: {
+      attributes: {
+        exclude: ['previewImage']
+      }
+    },
   });
   return Spot;
 };
