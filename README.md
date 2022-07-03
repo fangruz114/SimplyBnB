@@ -547,7 +547,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/reviews
+  * URL: /users/:id/reviews
   * Body: none
 
 * Successful Response
@@ -599,7 +599,7 @@ Returns all the reviews that belong to a spot specified by id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: spots/:spotId/reviews
+  * URL: spots/:id/reviews
   * Body: none
 
 * Successful Response

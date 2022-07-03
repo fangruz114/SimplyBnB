@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Spot } = require('../../db/models');
+const { User, Spot, Review, Image } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -33,6 +33,23 @@ const validateSignup = [
         .withMessage('Password must be 6 characters or more.'),
     handleValidationErrors
 ];
+
+router.get('/:id/reviews', requireAuth, async (req, res) => {
+    const reviews = await Review.findAll({
+        where: { userId: req.params.id },
+        include: [{
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
+        }, {
+            model: Spot,
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+        }, {
+            model: Image,
+            attributes: ['url']
+        }]
+    });
+    res.json({ Reviews: reviews });
+});
 
 router.get('/:userId/spots', requireAuth, async (req, res, next) => {
     if (req.user.id != req.params.userId) {

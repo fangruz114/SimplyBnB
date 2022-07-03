@@ -51,11 +51,10 @@ const verifySpotId = async (req, res, next) => {
         err.status = 404;
         err.message = 'Spot couldn\'t be found';
         err.title = 'Spot couldn\'t be found';
-        err.error = ['Spot couldn\'t be found'];
         next(err);
     }
     next();
-}
+};
 
 const verifySpotOwner = async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.id);
@@ -68,6 +67,24 @@ const verifySpotOwner = async (req, res, next) => {
     }
     next();
 };
+
+router.get('/:id/reviews', verifySpotId, async (req, res, next) => {
+    try {
+        const reviews = await Review.findAll({
+            where: { spotId: req.params.id },
+            include: [{
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            }, {
+                model: Image,
+                attributes: ['url']
+            }]
+        });
+        return res.json({ Reviews: reviews });
+    } catch (error) {
+        next(error);
+    }
+});
 
 router.get('/:id', verifySpotId, async (req, res) => {
     const spot = await Spot.findByPk(req.params.id, {
