@@ -24,10 +24,12 @@ const validateSpotInput = [
     check('lat')
         .exists({ checkFalsy: true })
         .isNumeric()
+        .custom(v => v >= -90 && v <= 90)
         .withMessage('Latitude is not valid'),
     check('lng')
         .exists({ checkFalsy: true })
         .isNumeric()
+        .custom(v => v >= -180 && v <= 180)
         .withMessage('Longitude is not valid'),
     check('name')
         .exists({ checkFalsy: true })
@@ -41,6 +43,18 @@ const validateSpotInput = [
         .exists({ checkFalsy: true })
         .isNumeric()
         .withMessage('Price per day is required'),
+    handleValidationErrors
+];
+
+const validateReviewInput = [
+    check('review')
+        .exists({ checkFalsy: true })
+        .withMessage('Review text is required'),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .isNumeric()
+        .custom(v => v >= 1 && v <= 5)
+        .withMessage('Stars must be an integer from 1 to 5'),
     handleValidationErrors
 ];
 
@@ -67,6 +81,32 @@ const verifySpotOwner = async (req, res, next) => {
     }
     next();
 };
+
+router.post('/:id/reviews', requireAuth, validateReviewInput, verifySpotId, async (req, res, next) => {
+    const reviewSpot = await Review.findAll({
+        where: {
+            spotId: req.params.id,
+            userId: req.user.id
+        }
+    });
+    console.log(reviewSpot);
+    if (reviewSpot.length) {
+        const err = new Error('User already has a review for this spot');
+        err.status = 403;
+        err.message = 'User already has a review for this spot';
+        err.title = 'User already has a review for this spot';
+        next(err);
+    } else {
+        const { review, stars } = req.body;
+        const newReview = await Review.create({
+            userId: req.user.id,
+            spotId: req.params.id,
+            review,
+            stars,
+        });
+        return res.json(newReview);
+    }
+});
 
 router.get('/:id/reviews', verifySpotId, async (req, res, next) => {
     try {
