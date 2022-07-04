@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { requireAuth } = require('../../utils/auth');
-const { Spot, Image, User, Review, sequelize } = require('../../db/models');
+const { Spot, Image, User, Review, Booking, sequelize } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -81,6 +81,42 @@ const verifySpotOwner = async (req, res, next) => {
     }
     next();
 };
+
+router.get('/:id/bookings', requireAuth, verifySpotId, async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.id);
+    if (req.user.id == spot.ownerId) {
+        const bookings = await Booking.findAll({
+            where: { spotId: req.params.id },
+            include: [{
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            }],
+            attributes: [
+                'id',
+                'spotId',
+                'userId',
+                [sequelize.fn('strftime', sequelize.col('stDate')), 'startDate'],
+                [sequelize.fn('strftime', sequelize.col('edDate')), 'endDate'],
+                'createdAt',
+                'updatedAt',
+            ]
+        });
+        return res.json({ Bookings: bookings });
+    } else {
+        const bookingsNotOwner = await Booking.findAll({
+            where: {
+                spotId: req.params.id,
+                userId: req.user.id
+            },
+            attributes: [
+                'spotId',
+                [sequelize.fn('strftime', sequelize.col('stDate')), 'startDate'],
+                [sequelize.fn('strftime', sequelize.col('edDate')), 'endDate']
+            ]
+        });
+        return res.json({ Bookings: bookingsNotOwner });
+    }
+});
 
 router.post('/:id/reviews', requireAuth, validateReviewInput, verifySpotId, async (req, res, next) => {
     const reviewSpot = await Review.findAll({
