@@ -28,8 +28,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    startDate: {
+    stDate: {
       type: DataTypes.DATE,
+      allowNull: false,
       // validate: {
       //   afterOrOnToday(value) {
       //     if (Date.parse(value) <= new Date()) {
@@ -38,8 +39,9 @@ module.exports = (sequelize, DataTypes) => {
       //   }
       // }
     },
-    endDate: {
+    edDate: {
       type: DataTypes.DATE,
+      allowNull: false,
       validate: {
         afterStartDate(value) {
           if (Date.parse(value) <= Date.parse(this.startDate)) {

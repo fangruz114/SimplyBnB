@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Spot, Review, Image } = require('../../db/models');
+const { User, Spot, Review, Image, Booking, sequelize } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -33,6 +33,41 @@ const validateSignup = [
         .withMessage('Password must be 6 characters or more.'),
     handleValidationErrors
 ];
+
+router.get('/:id/bookings', requireAuth, async (req, res, next) => {
+    try {
+        const bookings = await Booking.findAll({
+            where: { userId: req.params.id },
+            attributes: [
+                'id',
+                'spotId',
+                'userId',
+                [sequelize.fn('strftime', sequelize.col('stDate')), 'startDate'],
+                [sequelize.fn('strftime', sequelize.col('edDate')), 'endDate'],
+                'createdAt',
+                'updatedAt'
+            ],
+            include: [{
+                model: Spot,
+                attributes: [
+                    'id',
+                    'ownerId',
+                    'address',
+                    'city',
+                    'state',
+                    'country',
+                    'lat',
+                    'lng',
+                    'name',
+                    'price',
+                    'previewImage']
+            }]
+        });
+        return res.json({ Bookings: bookings })
+    } catch (err) {
+        next(err);
+    }
+});
 
 router.get('/:id/reviews', requireAuth, async (req, res) => {
     const reviews = await Review.findAll({
