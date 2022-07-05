@@ -4,7 +4,7 @@ const { requireAuth } = require('../../utils/auth');
 const { Spot, Image, User, Review, Booking, sequelize } = require('../../db/models');
 
 const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors, validateImageInput } = require('../../utils/validation');
 
 const { Op } = require('sequelize');
 const router = express.Router();
@@ -136,6 +136,26 @@ const verifyBookingSchedule = async (req, res, next) => {
     }
     next();
 };
+
+router.post('/:id/images', requireAuth, verifySpotId, verifySpotOwner, validateImageInput, async (req, res, next) => {
+    try {
+        const newImage = await Image.create({
+            spotId: req.params.id,
+            imageableType: "Spot",
+            url: req.body.url
+        });
+        return res.json(await Image.findByPk(newImage.id, {
+            attributes: [
+                'id',
+                ['spotId', 'imageableId'],
+                'imageableType',
+                'url'
+            ]
+        }));
+    } catch (err) {
+        next(err);
+    }
+});
 
 router.post('/:id/bookings', requireAuth, verifySpotId, validateBookingInput, verifyBookingSchedule, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.id);

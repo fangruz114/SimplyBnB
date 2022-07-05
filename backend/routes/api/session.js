@@ -31,9 +31,16 @@ router.post('/', validateLogin, async (req, res, next) => {
         return next(err);
     };
 
-    await setTokenCookie(res, user);
+    const token = await setTokenCookie(res, user);
 
-    const currentUser = await User.findByPk(user.id);
+    const { id, firstName, lastName, email } = user;
+    const currentUser = {
+        id,
+        firstName,
+        lastName,
+        email,
+        token,
+    };
 
     return res.json(currentUser);
 });

@@ -69,8 +69,18 @@ const verifyBookingSchedule = async (req, res, next) => {
     next();
 };
 
+const validateImageInput = [
+    check('url')
+        .exists({ checkFalsy: true })
+        .withMessage('Image url is required')
+        .isURL()
+        .withMessage('Invalid url'),
+    handleValidationErrors
+];
+
 module.exports = {
     handleValidationErrors,
     validateBookingInput,
     verifyBookingSchedule,
+    validateImageInput,
 };

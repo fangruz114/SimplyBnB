@@ -4,7 +4,7 @@ const { requireAuth } = require('../../utils/auth');
 const { Spot, Image, User, Review, sequelize } = require('../../db/models');
 
 const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors, validateImageInput } = require('../../utils/validation');
 
 const router = express.Router();
 
@@ -43,6 +43,43 @@ const verifyReviewOwner = async (req, res, next) => {
     }
     next();
 };
+
+const verifyReviewImageMaxCount = async (req, res, next) => {
+    const images = await Image.findAll({
+        where: {
+            ImageableType: 'Review',
+            reviewId: req.params.id,
+        }
+    });
+    if (images.length >= 10) {
+        const err = new Error('Maximum number of images for this resource was reached');
+        err.status = 400;
+        err.title = "Maximum number of images for this resource was reached";
+        err.message = "Maximum number of images for this resource was reached";
+        next(err);
+    }
+    next();
+};
+
+router.post('/:id/images', requireAuth, verifyReviewId, verifyReviewOwner, verifyReviewImageMaxCount, validateImageInput, async (req, res, next) => {
+    try {
+        const newImage = await Image.create({
+            reviewId: req.params.id,
+            imageableType: "Review",
+            url: req.body.url
+        });
+        return res.json(await Image.findByPk(newImage.id, {
+            attributes: [
+                'id',
+                ['reviewId', 'imageableId'],
+                'imageableType',
+                'url'
+            ]
+        }));
+    } catch (err) {
+        next(err);
+    }
+});
 
 router.put('/:id', requireAuth, validateReviewInput, verifyReviewId, verifyReviewOwner, async (req, res, next) => {
     const { review, stars } = req.body;
