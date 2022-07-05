@@ -33,7 +33,9 @@ router.post('/', validateLogin, async (req, res, next) => {
 
     await setTokenCookie(res, user);
 
-    return res.json(user);
+    const currentUser = await User.findByPk(user.id);
+
+    return res.json(currentUser);
 });
 
 router.delete('/', (_req, res) => {
