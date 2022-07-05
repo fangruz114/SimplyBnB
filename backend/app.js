@@ -55,6 +55,7 @@ app.use((err, _req, res, next) => {
     // check if error is a Sequelize error:
     if (err instanceof ValidationError) {
         err.errors = err.errors.map((e) => e.message);
+        err.status = 403;
         err.title = 'Validation error';
     }
     next(err);

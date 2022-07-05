@@ -15,10 +15,10 @@ const validateSignup = [
     check('lastName')
         .exists({ checkFalsy: true })
         .withMessage('Last name is required'),
-    check('username')
-        .not()
-        .isEmail()
-        .withMessage('Username cannot be an email.'),
+    // check('username')
+    //     .not()
+    //     .isEmail()
+    //     .withMessage('Username cannot be an email.'),
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
@@ -101,9 +101,15 @@ router.post('/', validateSignup, async (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
     const user = await User.signup({ firstName, lastName, email, username, password });
 
-    await setTokenCookie(res, user);
-
-    return res.json({ user });
+    const token = await setTokenCookie(res, user);
+    const currentUser = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        token,
+    }
+    return res.json(currentUser);
 });
 
 
