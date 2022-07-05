@@ -21,8 +21,13 @@ const verifyBookingId = async (req, res, next) => {
 };
 
 const pastBookings = async (req, res, next) => {
-    const booking = await Booking.findByPk(req.params.id);
-    if (Date.parse(booking.edDate) < new Date()) {
+    const booking = await Booking.findByPk(req.params.id, {
+        attributes: [
+            [sequelize.fn('strftime', sequelize.col('stDate')), 'startDate'],
+            [sequelize.fn('strftime', sequelize.col('edDate')), 'endDate']
+        ]
+    });
+    if (Date.parse(booking.dataValues.endDate) < Date.parse(new Date().toUTCString())) {
         const err = new Error('Past bookings can\'t be modified');
         err.status = 400;
         err.message = 'Past bookings can\'t be modified';
@@ -33,8 +38,13 @@ const pastBookings = async (req, res, next) => {
 };
 
 const verifyNonAllowedDeletingBookings = async (req, res, next) => {
-    const booking = await Booking.findByPk(req.params.id);
-    if (Date.parse(booking.stDate) < new Date()) {
+    const booking = await Booking.findByPk(req.params.id, {
+        attributes: [
+            [sequelize.fn('strftime', sequelize.col('stDate')), 'startDate'],
+            [sequelize.fn('strftime', sequelize.col('edDate')), 'endDate']
+        ]
+    });
+    if (Date.parse(booking.dataValues.startDate) < Date.parse(new Date().toUTCString())) {
         const err = new Error('Past bookings can\'t be modified');
         err.status = 400;
         err.message = 'Past bookings can\'t be modified';
