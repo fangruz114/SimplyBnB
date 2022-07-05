@@ -9,7 +9,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 const validateLogin = [
-    check('credential')
+    check('email')
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage('Email is required'),
@@ -20,8 +20,8 @@ const validateLogin = [
 ];
 
 router.post('/', validateLogin, async (req, res, next) => {
-    const { credential, password } = req.body;
-    const user = await User.login({ credential, password });
+    const { email, password } = req.body;
+    const user = await User.login({ email, password });
 
     if (!user) {
         const err = new Error('Invalid credentials');
@@ -33,12 +33,11 @@ router.post('/', validateLogin, async (req, res, next) => {
 
     const token = await setTokenCookie(res, user);
 
-    const { id, firstName, lastName, email } = user;
     const currentUser = {
-        id,
-        firstName,
-        lastName,
-        email,
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
         token,
     };
 
