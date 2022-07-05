@@ -72,6 +72,18 @@ module.exports = {
         stDate: '2022-10-10',
         edDate: '2022-10-12',
       },
+      {
+        spotId: 5,
+        userId: 1,
+        stDate: '2021-10-10',
+        edDate: '2021-10-12',
+      },
+      {
+        spotId: 1,
+        userId: 2,
+        stDate: '2022-06-28',
+        edDate: '2021-07-15',
+      },
     ], {});
   },
 

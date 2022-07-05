@@ -6,6 +6,7 @@ const { Spot, Image, User, Review, Booking, sequelize } = require('../../db/mode
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
+const { Op } = require('sequelize');
 const router = express.Router();
 
 const validateSpotInput = [
@@ -58,6 +59,35 @@ const validateReviewInput = [
     handleValidationErrors
 ];
 
+const validateBookingInput = [
+    check('startDate')
+        .exists({ checkFalsy: true })
+        .withMessage('Start date is required')
+        .isDate()
+        .not()
+        .isBefore(new Date().toISOString().split('T')[0])
+        .withMessage('Invalid start date'),
+    // .custom(async (value, { req }) => {
+    //     const bookings = await Booking.findAll({
+    //         where: {
+    //             spotId: req.params.id,
+    //             stDate: { [Op.lt]: new Date(req.body.endDate) },
+    //             edDate: { [Op.gt]: new Date(req.body.startDate) }
+    //         },
+    //     });
+    //     if (!bookings.length) return true;
+    //     else return false;
+    // })
+    // .withMessage('Start date conflicts with an existing booking'),
+    check('endDate')
+        .exists({ checkFalsy: true })
+        .withMessage('End date is required')
+        .isDate()
+        .isAfter(new Date().toISOString().split('T')[0])
+        .withMessage('Invalid end date'),
+    handleValidationErrors
+];
+
 const verifySpotId = async (req, res, next) => {
     let spot = await Spot.findByPk(req.params.id);
     if (!spot) {
@@ -82,7 +112,60 @@ const verifySpotOwner = async (req, res, next) => {
     next();
 };
 
-router.get('/:id/bookings', requireAuth, verifySpotId, async (req, res, next) => {
+const verifyBookingSchedule = async (req, res, next) => {
+    const bookings = await Booking.findAll({
+        where: { spotId: req.params.id },
+        order: [['stDate']]
+    });
+    let i = 0;
+    while (Date.parse(bookings[i].stDate) < Date.parse(req.body.endDate)) {
+        const currentBooking = bookings[i];
+        if (Date.parse(currentBooking.stDate) < Date.parse(req.body.endDate)
+            && Date.parse(currentBooking.edDate) > Date.parse(req.body.startDate)) {
+            const err = new Error('Sorry, this spot is already booked for the specified dates');
+            err.status = 403;
+            err.title = "Sorry, this spot is already booked for the specified dates";
+            err.message = "Sorry, this spot is already booked for the specified dates";
+            err.errors = {
+                "startDate": "Start date conflicts with an existing booking",
+                "endDate": "End date conflicts with an existing booking"
+            }
+            next(err);
+        }
+        i++;
+    }
+    next();
+};
+
+router.post('/:id/bookings', requireAuth, verifySpotId, validateBookingInput, verifyBookingSchedule, async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.id);
+    if (req.user.id == spot.ownerId) {
+        const err = new Error('Forbidden');
+        err.status = 403;
+        err.title = "Forbidden";
+        err.message = "Forbidden";
+        next(err);
+    }
+    const { startDate, endDate } = req.body;
+    const newBooking = await Booking.create({
+        spotId: req.params.id,
+        userId: req.user.id,
+        stDate: startDate,
+        edDate: endDate,
+    });
+    const { id, spotId, userId, stDate, edDate, createdAt, updatedAt } = newBooking;
+    return res.json({
+        id,
+        spotId,
+        userId,
+        startDate: stDate,
+        endDate: edDate,
+        createdAt,
+        updatedAt
+    });
+});
+
+router.get('/:id/bookings', requireAuth, verifySpotId, async (req, res) => {
     const spot = await Spot.findByPk(req.params.id);
     if (req.user.id == spot.ownerId) {
         const bookings = await Booking.findAll({

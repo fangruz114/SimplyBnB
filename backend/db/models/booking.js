@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       // validate: {
       //   afterOrOnToday(value) {
-      //     if (Date.parse(value) <= new Date()) {
+      //     if (Date.parse(value) < new Date()) {
       //       throw new Error('start date cannot be before today.')
       //     }
       //   }
@@ -53,6 +53,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Booking',
+    indexes: [
+      {
+        unique: true,
+        fields: ['spotId', 'stDate', 'edDate']
+      }
+    ],
   });
   return Booking;
 };
