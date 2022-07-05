@@ -21,7 +21,7 @@ const validateReviewInput = [
 ];
 
 const verifyReviewId = async (req, res, next) => {
-    let review = await Review.findByPk(req.params.id);
+    const review = await Review.findByPk(req.params.id);
     if (!review) {
         const err = new Error('Review couldn\'t be found');
         err.status = 404;
