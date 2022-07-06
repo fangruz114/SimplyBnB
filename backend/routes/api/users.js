@@ -97,7 +97,18 @@ router.get('/:userId/spots', requireAuth, async (req, res, next) => {
     return res.json({ Spots: spots });
 });
 
-router.post('/', validateSignup, async (req, res) => {
+router.post('/', validateSignup, async (req, res, next) => {
+    const userExist = await User.findOne({
+        where: { email: req.body.email }
+    });
+    if (userExist) {
+        const err = new Error('User already exists');
+        err.status = 403;
+        err.title = "User already exists";
+        err.message = "User already exists";
+        err.errors = { email: "User with that email already exists" }
+        next(err);
+    }
     const { firstName, lastName, email, password, username } = req.body;
     const user = await User.signup({ firstName, lastName, email, username, password });
 
