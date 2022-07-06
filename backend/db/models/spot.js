@@ -93,9 +93,11 @@ module.exports = (sequelize, DataTypes) => {
         fields: ['lat', 'lng']
       }
     ],
-    defaultScope: {
-      attributes: {
-        exclude: ['previewImage']
+    scopes: {
+      noPreviewImage: {
+        attributes: {
+          exclude: ['previewImage']
+        }
       }
     },
   });

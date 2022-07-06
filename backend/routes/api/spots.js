@@ -88,6 +88,34 @@ const validateBookingInput = [
     handleValidationErrors
 ];
 
+const validateQuerySearchInput = [
+    check('page')
+        .custom(v => v == undefined || v > 0)
+        .withMessage('Page must be greater than or equal to 0'),
+    check('size')
+        .custom(v => v == undefined || v > 0)
+        .withMessage('Size must be greater than or equal to 0'),
+    check('maxLat')
+        .custom(v => v == undefined || (v >= -90 && v <= 90))
+        .withMessage('Maximum latitude is invalid'),
+    check('minLat')
+        .custom(v => v == undefined || (v >= -90 && v <= 90))
+        .withMessage('Minimum latitude is invalid'),
+    check('maxLng')
+        .custom(v => v == undefined || (v >= -180 && v <= 180))
+        .withMessage('Maximum longitude is invalid'),
+    check('minLng')
+        .custom(v => v == undefined || (v >= -180 && v <= 180))
+        .withMessage('Minimum longitude is invalid'),
+    check('minPrice')
+        .custom(v => v == undefined || v > 0)
+        .withMessage('Minimum price must be greater than 0'),
+    check('maxPrice')
+        .custom(v => v == undefined || v > 0)
+        .withMessage('Maximum price must be greater than 0'),
+    handleValidationErrors
+]
+
 const verifySpotId = async (req, res, next) => {
     let spot = await Spot.findByPk(req.params.id);
     if (!spot) {
@@ -301,7 +329,7 @@ router.put('/:id', requireAuth, validateSpotInput, verifySpotId, verifySpotOwner
         description,
         price,
     });
-    return res.json(spotToUpdate);
+    return res.json(await Spot.scope("noPreviewImage").findByPk(req.params.id));
 });
 
 router.delete('/:id', requireAuth, verifySpotId, verifySpotOwner, async (req, res, next) => {
@@ -332,12 +360,54 @@ router.post('/', requireAuth, validateSpotInput, async (req, res) => {
         description,
         price,
     });
-    return res.json(newSpot);
+    return res.json(await Spot.scope("noPreviewImage").findByPk(newSpot.id));
 });
 
-router.get('/', async (req, res) => {
-    const spots = await Spot.findAll();
-    return res.json({ Spots: spots });
+router.get('/', validateQuerySearchInput, async (req, res) => {
+    let query = {
+        where: {},
+    };
+
+    const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
+    const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
+    if (page >= 1 && size >= 1) {
+        query.limit = size;
+        query.offset = size * (page - 1);
+    }
+
+    const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+    if (minLat || maxLat) {
+        const latCondition = [];
+        query.where.lat = { [Op.and]: latCondition };
+        if (minLat) {
+            latCondition.push({ [Op.gte]: parseFloat(minLat) })
+        }
+        if (maxLat) {
+            latCondition.push({ [Op.lte]: parseFloat(maxLat) });
+        }
+    }
+    if (minLng || maxLng) {
+        const lngCondition = [];
+        query.where.lng = { [Op.and]: lngCondition };
+        if (minLng) {
+            lngCondition.push({ [Op.gte]: parseFloat(minLng) });
+        }
+        if (maxLng) {
+            lngCondition.push({ [Op.lte]: parseFloat(maxLng) });
+        }
+    }
+    if (minPrice || maxPrice) {
+        const priceCondition = [];
+        query.where.price = { [Op.and]: priceCondition };
+        if (minPrice) {
+            priceCondition.push({ [Op.gte]: parseFloat(minPrice) });
+        }
+        if (maxPrice) {
+            priceCondition.push({ [Op.lte]: parseFloat(maxPrice) });
+        }
+    }
+    const spots = await Spot.findAll(query);
+    return res.json({ Spots: spots, page, size });
 });
 
 module.exports = router;

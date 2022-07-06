@@ -30,7 +30,30 @@ const validateSignup = [
     handleValidationErrors
 ];
 
-router.get('/:id/bookings', requireAuth, async (req, res, next) => {
+const verifyUserId = async (req, res, next) => {
+    let user = await User.findByPk(req.params.id);
+    if (!user) {
+        const err = new Error('User couldn\'t be found');
+        err.status = 404;
+        err.message = 'User couldn\'t be found';
+        err.title = 'User couldn\'t be found';
+        next(err);
+    }
+    next();
+};
+
+const verifyOwner = async (req, res, next) => {
+    if (req.user.id != req.params.id) {
+        const err = new Error('Forbidden');
+        err.status = 403;
+        err.title = "Forbidden";
+        err.message = "Forbidden";
+        next(err);
+    }
+    next();
+};
+
+router.get('/:id/bookings', requireAuth, verifyUserId, verifyOwner, async (req, res, next) => {
     try {
         const bookings = await Booking.findAll({
             where: { userId: req.params.id },
@@ -65,7 +88,7 @@ router.get('/:id/bookings', requireAuth, async (req, res, next) => {
     }
 });
 
-router.get('/:id/reviews', requireAuth, async (req, res) => {
+router.get('/:id/reviews', requireAuth, verifyUserId, verifyOwner, async (req, res) => {
     const reviews = await Review.findAll({
         where: { userId: req.params.id },
         include: [{
@@ -82,17 +105,9 @@ router.get('/:id/reviews', requireAuth, async (req, res) => {
     res.json({ Reviews: reviews });
 });
 
-router.get('/:userId/spots', requireAuth, async (req, res, next) => {
-    if (req.user.id != req.params.userId) {
-        const err = new Error('Forbidden');
-        err.status = 403;
-        err.title = "Forbidden";
-        err.message = "Forbidden";
-        next(err);
-    }
-
+router.get('/:id/spots', requireAuth, verifyUserId, verifyOwner, async (req, res) => {
     const spots = await Spot.findAll({
-        where: { ownerId: req.params.userId }
+        where: { ownerId: req.params.id }
     });
     return res.json({ Spots: spots });
 });
