@@ -38,19 +38,13 @@ const validateBookingInput = [
 ];
 
 const verifyBookingSchedule = async (req, res, next) => {
-    let bookings = await Booking.findAll({
-        where: { spotId: req.params.id },
+    const bookingInd = await Booking.findByPk(req.params.id);
+    const bookings = await Booking.findAll({
+        where: { spotId: bookingInd.spotId },
         order: [['stDate']]
     });
-    if (!bookings.length) {
-        const bookingInd = await Booking.findByPk(req.params.id);
-        bookings = await Booking.findAll({
-            where: { spotId: bookingInd.spotId },
-            order: [['stDate']]
-        });
-    }
     let i = 0;
-    while (Date.parse(bookings[i].stDate) < Date.parse(req.body.endDate)) {
+    while (i < bookings.length) {
         const currentBooking = bookings[i];
         if (Date.parse(currentBooking.stDate) < Date.parse(req.body.endDate)
             && Date.parse(currentBooking.edDate) > Date.parse(req.body.startDate)) {
