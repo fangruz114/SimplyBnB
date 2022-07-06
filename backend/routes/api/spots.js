@@ -226,8 +226,8 @@ router.get('/:id/bookings', requireAuth, verifySpotId, async (req, res) => {
                 'id',
                 'spotId',
                 'userId',
-                [sequelize.fn('strftime', sequelize.col('stDate')), 'startDate'],
-                [sequelize.fn('strftime', sequelize.col('edDate')), 'endDate'],
+                ['stDate', 'startDate'],
+                ['edDate', 'endDate'],
                 'createdAt',
                 'updatedAt',
             ]
@@ -241,8 +241,8 @@ router.get('/:id/bookings', requireAuth, verifySpotId, async (req, res) => {
             },
             attributes: [
                 'spotId',
-                [sequelize.fn('strftime', sequelize.col('stDate')), 'startDate'],
-                [sequelize.fn('strftime', sequelize.col('edDate')), 'endDate']
+                ['stDate', 'startDate'],
+                ['edDate', 'endDate'],
             ]
         });
         return res.json({ Bookings: bookingsNotOwner });

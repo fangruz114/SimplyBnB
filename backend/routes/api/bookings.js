@@ -23,8 +23,8 @@ const verifyBookingId = async (req, res, next) => {
 const pastBookings = async (req, res, next) => {
     const booking = await Booking.findByPk(req.params.id, {
         attributes: [
-            [sequelize.fn('strftime', sequelize.col('stDate')), 'startDate'],
-            [sequelize.fn('strftime', sequelize.col('edDate')), 'endDate']
+            ['stDate', 'startDate'],
+            ['edDate', 'endDate'],
         ]
     });
     if (Date.parse(booking.dataValues.endDate) < Date.parse(new Date().toUTCString())) {
@@ -40,8 +40,8 @@ const pastBookings = async (req, res, next) => {
 const verifyNonAllowedDeletingBookings = async (req, res, next) => {
     const booking = await Booking.findByPk(req.params.id, {
         attributes: [
-            [sequelize.fn('strftime', sequelize.col('stDate')), 'startDate'],
-            [sequelize.fn('strftime', sequelize.col('edDate')), 'endDate']
+            ['stDate', 'startDate'],
+            ['edDate', 'endDate'],
         ]
     });
     if (Date.parse(booking.dataValues.startDate) < Date.parse(new Date().toUTCString())) {
