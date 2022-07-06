@@ -45,10 +45,10 @@ const verifyNonAllowedDeletingBookings = async (req, res, next) => {
         ]
     });
     if (Date.parse(booking.dataValues.startDate) < Date.parse(new Date().toUTCString())) {
-        const err = new Error('Past bookings can\'t be modified');
+        const err = new Error('Bookings that have been started can\'t be deleted');
         err.status = 400;
-        err.message = 'Past bookings can\'t be modified';
-        err.title = 'Past bookings can\'t be modified';
+        err.message = 'Bookings that have been started can\'t be deleted';
+        err.title = 'Bookings that have been started can\'t be deleted';
         next(err);
     }
     next();
