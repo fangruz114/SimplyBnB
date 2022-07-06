@@ -294,25 +294,47 @@ router.get('/:id/reviews', verifySpotId, async (req, res, next) => {
 });
 
 router.get('/:id', verifySpotId, async (req, res) => {
-    const spot = await Spot.findByPk(req.params.id, {
+    const spot = await Spot.scope("noPreviewImage").findByPk(req.params.id);
+    const ratings = await Spot.findByPk(req.params.id, {
         include: [{
             model: Review,
             attributes: [],
-        }, {
-            model: Image,
-            attributes: ['url']
-        }, {
-            model: User,
-            as: 'Owner',
-            attributes: ['id', 'firstName', 'lastName']
         }],
         attributes: [
-            'id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt',
-            [sequelize.fn('COUNT', sequelize.col('Reviews.id')), 'numReviews'],
             [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgStarRating']
-        ],
+        ]
     });
-    return res.json(spot);
+    const numReviews = await Review.count({
+        where: { spotId: req.params.id }
+    });
+    const images = await Image.findAll({
+        where: { spotId: req.params.id },
+        attributes: ['url']
+    });
+    const owners = await User.findByPk(spot.ownerId, {
+        attributes: ['id', 'firstName', 'lastName']
+    });
+
+    const data = {
+        id: spot.id,
+        ownerId: spot.ownerId,
+        address: spot.address,
+        city: spot.city,
+        state: spot.state,
+        country: spot.country,
+        lat: spot.lat,
+        lng: spot.lng,
+        name: spot.name,
+        description: spot.description,
+        price: spot.price,
+        createdAt: spot.createdAt,
+        updatedAt: spot.updatedAt,
+        numReviews,
+        avgStarRating: ratings.dataValues.avgStarRating,
+        images,
+        Owners: owners
+    }
+    return res.json(data);
 });
 
 router.put('/:id', requireAuth, validateSpotInput, verifySpotId, verifySpotOwner, async (req, res,) => {
