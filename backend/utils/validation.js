@@ -43,28 +43,44 @@ const verifyBookingSchedule = async (req, res, next) => {
     const bookings = await Booking.findAll({
         where: {
             spotId: bookingInd.spotId,
-            id: { [Op.notIn]: [req.params.id] }
+            id: { [Op.notIn]: [req.params.id] },
+            stDate: { [Op.lt]: new Date(req.body.endDate) },
+            edDate: { [Op.gt]: new Date(req.body.startDate) },
         },
         order: [['stDate']],
     });
-    let i = 0;
-    while (i < bookings.length) {
-        const currentBooking = bookings[i];
-        if (Date.parse(currentBooking.stDate) < Date.parse(req.body.endDate)
-            && Date.parse(currentBooking.edDate) > Date.parse(req.body.startDate)) {
-            const err = new Error('Sorry, this spot is already booked for the specified dates');
-            err.status = 403;
-            err.title = "Sorry, this spot is already booked for the specified dates";
-            err.message = "Sorry, this spot is already booked for the specified dates";
-            err.errors = {
-                "startDate": "Start date conflicts with an existing booking",
-                "endDate": "End date conflicts with an existing booking"
-            }
-            next(err);
+    if (bookings.length) {
+        const err = new Error('Sorry, this spot is already booked for the specified dates');
+        err.status = 403;
+        err.title = "Sorry, this spot is already booked for the specified dates";
+        err.message = "Sorry, this spot is already booked for the specified dates";
+        err.errors = {
+            "startDate": "Start date conflicts with an existing booking",
+            "endDate": "End date conflicts with an existing booking"
         }
-        i++;
-    }
+        next(err);
+    };
     next();
+
+    // alternative method to iteratate through
+    // let i = 0;
+    // while (i < bookings.length) {
+    //     const currentBooking = bookings[i];
+    //     if (Date.parse(currentBooking.stDate) < Date.parse(req.body.endDate)
+    //         && Date.parse(currentBooking.edDate) > Date.parse(req.body.startDate)) {
+    //         const err = new Error('Sorry, this spot is already booked for the specified dates');
+    //         err.status = 403;
+    //         err.title = "Sorry, this spot is already booked for the specified dates";
+    //         err.message = "Sorry, this spot is already booked for the specified dates";
+    //         err.errors = {
+    //             "startDate": "Start date conflicts with an existing booking",
+    //             "endDate": "End date conflicts with an existing booking"
+    //         }
+    //         next(err);
+    //     }
+    //     i++;
+    // }
+    // next();
 };
 
 const validateImageInput = [

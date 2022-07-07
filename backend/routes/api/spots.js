@@ -67,18 +67,6 @@ const validateBookingInput = [
         .not()
         .isBefore(new Date().toISOString().split('T')[0])
         .withMessage('Invalid start date'),
-    // .custom(async (value, { req }) => {
-    //     const bookings = await Booking.findAll({
-    //         where: {
-    //             spotId: req.params.id,
-    //             stDate: { [Op.lt]: new Date(req.body.endDate) },
-    //             edDate: { [Op.gt]: new Date(req.body.startDate) }
-    //         },
-    //     });
-    //     if (!bookings.length) return true;
-    //     else return false;
-    // })
-    // .withMessage('Start date conflicts with an existing booking'),
     check('endDate')
         .exists({ checkFalsy: true })
         .withMessage('End date is required')
@@ -141,27 +129,48 @@ const verifySpotOwner = async (req, res, next) => {
 };
 
 const verifyBookingSchedule = async (req, res, next) => {
+    // const bookings = await Booking.findAll({
+    //     where: { spotId: req.params.id },
+    //     order: [['stDate']]
+    // });
+    // let i = 0;
+    // while (i < bookings.length) {
+    //     const currentBooking = bookings[i];
+    //     if (Date.parse(currentBooking.stDate) < Date.parse(req.body.endDate)
+    //         && Date.parse(currentBooking.edDate) > Date.parse(req.body.startDate)) {
+    //         const err = new Error('Sorry, this spot is already booked for the specified dates');
+    //         err.status = 403;
+    //         err.title = "Sorry, this spot is already booked for the specified dates";
+    //         err.message = "Sorry, this spot is already booked for the specified dates";
+    //         err.errors = {
+    //             "startDate": "Start date conflicts with an existing booking",
+    //             "endDate": "End date conflicts with an existing booking"
+    //         }
+    //         next(err);
+    //     }
+    //     i++;
+    // }
+    // next();
+
+    //alternative method
     const bookings = await Booking.findAll({
-        where: { spotId: req.params.id },
-        order: [['stDate']]
+        where: {
+            spotId: req.params.id,
+            stDate: { [Op.lt]: new Date(req.body.endDate) },
+            edDate: { [Op.gt]: new Date(req.body.startDate) }
+        },
     });
-    let i = 0;
-    while (i < bookings.length) {
-        const currentBooking = bookings[i];
-        if (Date.parse(currentBooking.stDate) < Date.parse(req.body.endDate)
-            && Date.parse(currentBooking.edDate) > Date.parse(req.body.startDate)) {
-            const err = new Error('Sorry, this spot is already booked for the specified dates');
-            err.status = 403;
-            err.title = "Sorry, this spot is already booked for the specified dates";
-            err.message = "Sorry, this spot is already booked for the specified dates";
-            err.errors = {
-                "startDate": "Start date conflicts with an existing booking",
-                "endDate": "End date conflicts with an existing booking"
-            }
-            next(err);
+    if (bookings.length) {
+        const err = new Error('Sorry, this spot is already booked for the specified dates');
+        err.status = 403;
+        err.title = "Sorry, this spot is already booked for the specified dates";
+        err.message = "Sorry, this spot is already booked for the specified dates";
+        err.errors = {
+            "startDate": "Start date conflicts with an existing booking",
+            "endDate": "End date conflicts with an existing booking"
         }
-        i++;
-    }
+        next(err);
+    };
     next();
 };
 
