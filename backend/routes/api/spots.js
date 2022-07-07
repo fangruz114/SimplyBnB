@@ -324,7 +324,7 @@ router.get('/:id', verifySpotId, async (req, res) => {
         createdAt: spot.createdAt,
         updatedAt: spot.updatedAt,
         numReviews,
-        avgStarRating: ratings[0].dataValues.avgStarRating,
+        avgStarRating: parseFloat(ratings[0].dataValues.avgStarRating),
         images,
         Owners: owners
     }
