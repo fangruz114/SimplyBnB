@@ -68,15 +68,14 @@ router.post('/:id/images', requireAuth, verifyReviewId, verifyReviewOwner, verif
             imageableType: "Review",
             url: req.body.url
         });
-        return res.json(newImage);
-        // return res.json(await Image.findByPk(newImage.id, {
-        //     attributes: [
-        //         'id',
-        //         ['reviewId', 'imageableId'],
-        //         'imageableType',
-        //         'url'
-        //     ]
-        // }));
+        return res.json(await Image.findByPk(newImage.id, {
+            attributes: [
+                'id',
+                ['reviewId', 'imageableId'],
+                'imageableType',
+                'url'
+            ]
+        }));
     } catch (err) {
         next(err);
     }

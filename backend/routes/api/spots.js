@@ -90,7 +90,7 @@ const validateBookingInput = [
 
 const validateQuerySearchInput = [
     check('page')
-        .custom(v => v == undefined || v > 0)
+        .custom(v => v == undefined || v >= 0)
         .withMessage('Page must be greater than or equal to 0'),
     check('size')
         .custom(v => v == undefined || v > 0)
@@ -392,7 +392,7 @@ router.get('/', validateQuerySearchInput, async (req, res) => {
 
     const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
     const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
-    if (page >= 0 && size >= 1) {
+    if (page >= 1 && size >= 1) {
         query.limit = size;
         query.offset = size * (page - 1);
     }
