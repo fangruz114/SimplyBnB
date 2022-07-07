@@ -54,4 +54,9 @@ router.delete('/:id', requireAuth, verifyImageId, verifyImageOwner, async (req, 
     }
 });
 
+router.get('/', async (req, res) => {
+    const images = await Image.findAll();
+    return res.json(images)
+})
+
 module.exports = router;
