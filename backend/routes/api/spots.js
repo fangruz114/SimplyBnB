@@ -293,18 +293,13 @@ router.get('/:id/reviews', verifySpotId, async (req, res, next) => {
 });
 
 router.get('/:id', verifySpotId, async (req, res) => {
-    const spot = await Spot.findByPk(req.params.id, {
-        include: [{
-            model: Review,
-        }],
-        attributes: [
-            'id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt',
-            [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgStarRating']
-        ]
-    });
-    console.log(spot);
+    const spot = await Spot.findByPk(req.params.id);
     const numReviews = await Review.count({
         where: { spotId: req.params.id }
+    });
+    const ratings = await Review.findAll({
+        where: { spotId: req.params.id },
+        attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']]
     });
     const images = await Image.findAll({
         where: { spotId: req.params.id },
@@ -329,7 +324,7 @@ router.get('/:id', verifySpotId, async (req, res) => {
         createdAt: spot.createdAt,
         updatedAt: spot.updatedAt,
         numReviews,
-        avgStarRating: spot.dataValues.avgStarRating,
+        avgStarRating: ratings[0].dataValues.avgStarRating,
         images,
         Owners: owners
     }
