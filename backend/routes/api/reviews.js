@@ -47,7 +47,7 @@ const verifyReviewOwner = async (req, res, next) => {
 const verifyReviewImageMaxCount = async (req, res, next) => {
     const images = await Image.findAll({
         where: {
-            ImageableType: 'Review',
+            imageableType: 'Review',
             reviewId: req.params.id,
         }
     });
