@@ -256,7 +256,6 @@ router.post('/:id/reviews', requireAuth, validateReviewInput, verifySpotId, asyn
             userId: req.user.id
         }
     });
-    console.log(reviewSpot);
     if (reviewSpot.length) {
         const err = new Error('User already has a review for this spot');
         err.status = 403;
@@ -301,6 +300,7 @@ router.get('/:id', verifySpotId, async (req, res) => {
             attributes: [],
         }],
         attributes: [
+            'id',
             [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgStarRating']
         ]
     });
@@ -340,7 +340,7 @@ router.get('/:id', verifySpotId, async (req, res) => {
 router.put('/:id', requireAuth, validateSpotInput, verifySpotId, verifySpotOwner, async (req, res,) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const spotToUpdate = await Spot.findByPk(req.params.id);
-    spotToUpdate.update({
+    await spotToUpdate.update({
         address,
         city,
         state,
@@ -392,7 +392,7 @@ router.get('/', validateQuerySearchInput, async (req, res) => {
 
     const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
     const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
-    if (page >= 1 && size >= 1) {
+    if (page >= 0 && size >= 1) {
         query.limit = size;
         query.offset = size * (page - 1);
     }
