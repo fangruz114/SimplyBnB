@@ -294,10 +294,9 @@ router.get('/:id/reviews', verifySpotId, async (req, res, next) => {
 
 router.get('/:id', verifySpotId, async (req, res) => {
     const spot = await Spot.scope("noPreviewImage").findByPk(req.params.id);
-    const ratings = await Spot.findByPk(req.params.id, {
+    const ratings = await Spot.scope("noPreviewImage").findByPk(req.params.id, {
         include: [{
             model: Review,
-            attributes: [],
         }],
         attributes: [
             'id',
