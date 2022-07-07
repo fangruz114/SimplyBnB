@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const { Booking, Spot } = require('../db/models');
 const { check } = require('express-validator');
+const { Op } = require('sequelize');
 
 // middleware for formatting errors from express-validator middleware
 // (to customize, see express-validator's documentation)
@@ -40,8 +41,11 @@ const validateBookingInput = [
 const verifyBookingSchedule = async (req, res, next) => {
     const bookingInd = await Booking.findByPk(req.params.id);
     const bookings = await Booking.findAll({
-        where: { spotId: bookingInd.spotId },
-        order: [['stDate']]
+        where: {
+            spotId: bookingInd.spotId,
+            id: { [Op.notIn]: [req.params.id] }
+        },
+        order: [['stDate']],
     });
     let i = 0;
     while (i < bookings.length) {
