@@ -1,0 +1,33 @@
+nav {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem calc((100vw - 1000px) / 2);
+    z-index: 10;
+    border-bottom: 0.5px grey solid;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-height: 30px;
+    max-width: 30px;
+}
+
+img {
+    max-height: 35px;
+    max-width: 35px;
+}
+
+.site-name {
+    display: flex;
+    align-items: center;
+    color: #FF5A5F;
+    font-weight: bold;
+    font-size: 23px;
+    margin-left: 5px;
+    font-family: 'Montserrat', sans-serif;
+
+}
