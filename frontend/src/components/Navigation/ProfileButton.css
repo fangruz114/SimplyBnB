@@ -12,7 +12,7 @@
     margin: 5px;
     position: fixed;
     right: 15%;
-    top: 2%;
+    top: 1%;
 }
 
 .fa-bars {
@@ -24,15 +24,14 @@
 
 .profile-dropdown {
     height: 300px;
-    width: 200px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 35%;
-    right: 0px;
+    top: 18%;
+    right: 5%;
     justify-content: space-evenly;
     align-items: flex-start;
-    /* padding: 0.5rem calc((100vw - 1000px) / 2); */
     z-index: 10;
     border-bottom: 0.5px grey solid;
     transform: translate(-50%, -50%);

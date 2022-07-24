@@ -25,7 +25,7 @@ function LoginForm({ onClose }) {
         <div className='loginform'>
             <div className='loginform-title'>
                 <button className='login-form-close-btn' onClick={onClose}>
-                    <i class="fa-solid fa-xmark"></i>
+                    <i className="fa-solid fa-xmark"></i>
                 </button>
                 <p className="login-text">Log in</p>
             </div>
