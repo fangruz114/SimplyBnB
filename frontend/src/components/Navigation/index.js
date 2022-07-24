@@ -28,17 +28,14 @@ const Navigation = ({ isLoaded }) => {
                     <Link to='/'>
                         <img src='https://cdn.usbrandcolors.com/images/logos/airbnb-logo.svg' alt='logo' />
                     </Link>
-                    <div className='site-name'>SimplyBnB</div>
+                    <div className='site-name'>Simplybnb</div>
                 </div>
-                <div className='bar'></div>
-                <div className='nav-menu'>
-                    <ul>
-                        <li>
-                            <NavLink exact to="/">Home</NavLink>
-                            {sessionLinks}
-                        </li>
-                    </ul>
-                </div>
+                <ul className='nav-menu'>
+                    <li className='nav-link'>
+                        <NavLink exact to="/">Home</NavLink>
+                        {sessionLinks}
+                    </li>
+                </ul>
             </nav>
         </>
     )

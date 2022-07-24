@@ -21,15 +21,22 @@ function LoginFormPage() {
         return dispatch(sessionActions.login({ email, password }))
             .catch(async (res) => {
                 const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                if (data) setErrors(data);
             });
     }
 
     return (
         <div className='loginform'>
+            <div className='loginform-title'>
+                <button className='login-form-close-btn'>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <p>Log in</p>
+            </div>
             <form onSubmit={handleSubmit}>
+                <p className="login-from-welcome">Welcome to Simplybnb</p>
                 <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    {errors.message}
                 </ul>
                 <div className="form-element">
                     <label >
