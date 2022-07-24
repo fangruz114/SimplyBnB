@@ -20,12 +20,12 @@ function SpotList() {
                     <div className='spot-card'>
                         <div className='spot-image'>
                             <img src={spot.previewImage} alt='previewImage' />
-
                         </div>
                         <div className='spot-info'>
-                            <div className='spot-name'>
-                                <span style={{ fontWeight: 'bold' }}>{spot.name}</span>{`${spot.city}, ${spot.state}`}
-                                <div className='spot-price'><span style={{ fontWeight: 'bold' }}>${spot.price}</span>night</div>
+                            <div className='spot-details'>
+                                <div className='spot-name'>{spot.name}</div>
+                                <div>{`${spot.city}, ${spot.state}`}</div>
+                                <div className='spot-price'><span>${spot.price}</span>night</div>
                             </div>
                             <div className='spot-review'>
                                 <i class="fa-solid fa-star"></i>
