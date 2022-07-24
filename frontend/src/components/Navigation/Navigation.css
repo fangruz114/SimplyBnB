@@ -1,23 +1,36 @@
 nav {
     height: 80px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0.5rem calc((100vw - 1000px) / 2);
     z-index: 10;
     border-bottom: 0.5px grey solid;
+    background-color: white;
+    position: fixed;
+    top: 0px;
 }
 
-.logo {
+.logo a {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     position: absolute;
-    left: 10%;
+    left: 15%;
     top: 22px;
     max-height: 30px;
-    max-width: 30px;
+    width: 500px;
+    box-sizing: border-box;
 }
+
+.logo a:link,
+.logo a:visited,
+.logo a:active {
+    text-decoration: none;
+}
+
+
 
 img {
     max-height: 35px;
@@ -38,10 +51,10 @@ img {
 .nav-menu {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     align-items: center;
     position: fixed;
-    left: 50%;
+    right: 18%;
     text-decoration: none;
     width: 40%;
     height: 40px;
