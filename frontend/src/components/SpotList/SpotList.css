@@ -10,6 +10,7 @@
     padding: 10px 5px;
     margin: 30px 5px;
     z-index: -1;
+    font-family: 'Poppins', sans-serif;
 }
 
 .spot-card {
@@ -43,23 +44,44 @@
     height: 38%;
     padding: 5px;
     margin: 5px;
+    text-decoration: none;
+}
+
+.all-spots a:link,
+.all-spots a:visited,
+.all-spots a:hover,
+.all-spots a:active {
+    text-decoration: none;
+    color: black;
+}
+
+.all-spots .spot-info .spot-details .spot-name {
+    font-weight: bold;
 }
 
 .spot-details {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    margin-right: 13px;
+    font-size: 14px;
+    color: rgb(126, 126, 126);
 }
 
 .spot-name {
     font-weight: bold;
+    color: rgb(88, 88, 88);
 }
 
 .spot-price span {
     margin-right: 5px;
+    font-weight: bold;
+    color: rgb(88, 88, 88)
 }
 
 .spot-review {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    padding-top: 8px;
 }

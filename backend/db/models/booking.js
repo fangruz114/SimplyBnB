@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     stDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       // validate: {
       //   afterOrOnToday(value) {
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       // }
     },
     edDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
         afterStartDate(value) {

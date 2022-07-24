@@ -1,9 +1,9 @@
-import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { loadSpots } from '../../store/spots';
-import SpotDetailPage from '../SpotDetailPage';
 import './SpotList.css';
+import ReviewStarDisplay from '../ReviewStarDisplay';
 
 function SpotList() {
     const dispatch = useDispatch();
@@ -17,25 +17,23 @@ function SpotList() {
         <div className='all-spots'>
             {spots && (
                 spots.map(spot => (
-                    <div key={spot.id} className='spot-card'>
-                        <div className='spot-image'>
-                            <img src={spot.previewImage} alt='previewImage' />
-                        </div>
-                        <div className='spot-info'>
-                            <div className='spot-details'>
-                                <div className='spot-name'>{spot.name}</div>
-                                <div>{`${spot.city}, ${spot.state}`}</div>
-                                <div className='spot-price'><span>${spot.price}</span>night</div>
+                    <Link key={spot.id} to={`/spots/${spot.id}`}>
+                        <div className='spot-card'>
+                            <div className='spot-image'>
+                                <img src={spot.previewImage} alt='previewImage' />
                             </div>
-                            <div className='spot-review'>
-                                <i className="fa-solid fa-star"></i>
-                                <span>{spot.avgStarRating}</span>
+                            <div className='spot-info'>
+                                <div className='spot-details'>
+                                    <div className='spot-name'>{spot.name}</div>
+                                    <div>{`${spot.city}, ${spot.state}`}</div>
+                                    <div className='spot-price'><span>${spot.price}</span>night</div>
+                                </div>
+                                <div className='spot-review'>
+                                    <ReviewStarDisplay id={spot.id} />
+                                </div>
                             </div>
                         </div>
-                        <Route path={`/spots/${spot.id}`}>
-                            <SpotDetailPage />
-                        </Route>
-                    </div>
+                    </Link>
                 ))
             )}
 

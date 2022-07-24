@@ -1,3 +1,5 @@
+
+
 function SpotDetailPage() {
     return null;
 }
