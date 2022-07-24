@@ -17,7 +17,7 @@ function SpotList() {
         <div className='all-spots'>
             {spots && (
                 spots.map(spot => (
-                    <div className='spot-card'>
+                    <div key={spot.id} className='spot-card'>
                         <div className='spot-image'>
                             <img src={spot.previewImage} alt='previewImage' />
                         </div>
@@ -28,7 +28,7 @@ function SpotList() {
                                 <div className='spot-price'><span>${spot.price}</span>night</div>
                             </div>
                             <div className='spot-review'>
-                                <i class="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-star"></i>
                                 <span>{spot.avgStarRating}</span>
                             </div>
                         </div>
