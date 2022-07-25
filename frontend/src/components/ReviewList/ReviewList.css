@@ -1,0 +1,19 @@
+.ind-review {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 20px 50px 20px 0px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+    font-size: 15px;
+}
+
+.review-list-rating {
+    display: flex;
+    flex-direction: row;
+}
+
+.review-content {
+    display: flex;
+
+}

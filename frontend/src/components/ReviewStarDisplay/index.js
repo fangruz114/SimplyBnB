@@ -6,7 +6,8 @@ import './ReviewStarDisplay.css';
 function ReviewStarDisplay({ id }) {
     const dispatch = useDispatch();
     const reviews = useSelector(state => Object.values(state.reviews));
-    const spotReviews = reviews.filter(review => review.spotId === id);
+    const spotReviews = reviews.filter(review => review.spotId === Number(id));
+
     let ratingSum = 0;
     for (let review of spotReviews) {
         ratingSum += review.stars;
