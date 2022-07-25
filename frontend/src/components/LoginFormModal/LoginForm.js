@@ -20,6 +20,21 @@ function LoginForm({ onClose }) {
         );
     };
 
+    const loginDemoUser = (e) => {
+        e.preventDefault();
+        setErrors({});
+        return dispatch(sessionActions.login({
+            email: 'demo@demo.io',
+            password: 'password',
+        }))
+            .catch(
+                async (res) => {
+                    const data = await res.json();
+                    if (data) setErrors(data);
+                }
+            );
+
+    }
 
     return (
         <div className='loginform'>
@@ -58,6 +73,9 @@ function LoginForm({ onClose }) {
                 </div>
                 <div className="form-element">
                     <button type="submit">Log In</button>
+                </div>
+                <div className="form-element">
+                    <button onClick={loginDemoUser}>Demo User</button>
                 </div>
             </form >
         </div>
