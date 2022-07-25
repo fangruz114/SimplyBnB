@@ -25,7 +25,7 @@ function SpotDetailPage() {
                     <div className='sub-info'>
                         <div className='star-rating-display'>
                             <i className="fa-solid fa-star"></i>
-                            <p>{spot.avgStarRating}</p>
+                            <p>{spot.avgStarRating.toFixed(2)}</p>
                         </div>
                         <p> - </p>
                         <div>{`${spot.numReviews} reviews`}</div>

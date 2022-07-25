@@ -40,7 +40,7 @@ function ProfileButton({ user }) {
                     <li>{`${user.firstName} ${user.lastName}`}</li>
                     <li>{user.email}</li>
                     <li className='profile-dropdown-trips'>
-                        <button>Trips</button>
+                        <button>Manage Reviews</button>
                     </li>
                     <li>
                         <button>Manage Listings</button>
