@@ -1,0 +1,35 @@
+.review-by-you {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 70%;
+    position: absolute;
+    top: 7%;
+    left: 15%;
+    padding: 10px 20px;
+    margin: 30px 5px;
+    z-index: -1;
+    font-family: 'Poppins', sans-serif;
+}
+
+.review-by-you h1 {
+    color: rgb(92, 92, 92);
+    padding: 2px;
+    margin: 5px 5px 40px;
+}
+
+.review-by-you .past-reviews-you-wrote {
+    padding: 2px;
+    margin: 5px 30px 5px 5px;
+    border: 1px solid rgb(220, 224, 224);
+}
+
+.review-by-you .past-reviews-you-wrote>p {
+    background-color: rgb(236, 239, 237);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+    padding: 25px;
+    color: rgb(75, 75, 75);
+}

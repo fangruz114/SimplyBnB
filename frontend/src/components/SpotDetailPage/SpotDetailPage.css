@@ -42,7 +42,6 @@
 .image-layout {
     display: flex;
     flex-direction: row;
-
 }
 
 .image-layout img {
@@ -60,9 +59,10 @@
 }
 
 .image-layout .side-images img {
-    max-height: 200px;
+    max-height: 30%;
     max-width: 50%;
     object-fit: cover;
+    box-sizing: border-box;
 }
 
 .spot-infomation {

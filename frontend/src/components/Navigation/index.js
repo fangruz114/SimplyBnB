@@ -19,7 +19,6 @@ const Navigation = ({ isLoaded }) => {
             <>
                 <LoginFormModal />
                 <SignupFormModel />
-                {/* <NavLink to="/signup">Sign Up</NavLink> */}
             </>
         );
     }

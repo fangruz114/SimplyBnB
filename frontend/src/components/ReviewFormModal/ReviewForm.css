@@ -1,0 +1,93 @@
+.review-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 20px 30px;
+    background: white;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.reviewform-title {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(234, 234, 234);
+    height: 50px;
+}
+
+.review-form-close-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 5%;
+    left: 6%;
+    background-color: white;
+    font-size: 18px;
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.review-form-close-btn:hover {
+    background-color: rgb(246, 246, 246);
+}
+
+.review-text {
+    display: flex;
+    position: fixed;
+    top: 6%;
+    left: 38%;
+}
+
+.form-element {
+    margin: 15px 0px;
+}
+
+.form-element label {
+    font-size: 14px;
+    color: #222;
+}
+
+.form-element input[type="number"],
+.form-element textarea {
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+}
+
+.form-element textarea {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+
+}
+
+.form-element button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    background: linear-gradient(to right, rgb(215, 10, 101), rgb(254, 56, 92));
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.review-from-welcome {
+    font-size: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 20px 0px 7px;
+
+}

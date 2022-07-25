@@ -1,25 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { loadOneSpot } from '../../store/spots';
 import ReviewList from '../ReviewList';
+import ReviewFormModal from '../ReviewFormModal';
 import './SpotDetailPage.css';
 
 
 function SpotDetailPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const spot = useSelector(state => state.spots[id]);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const spot = useSelector(state => state.spots[+id]);
     console.log('spot', spot);
 
     useEffect(() => {
-        dispatch(loadOneSpot(id));
+        dispatch(loadOneSpot(id))
+            .then(() => setIsLoaded(true))
     }, [dispatch, id]);
 
 
     return (
         <>
-            {spot.images && (
+            {isLoaded && (
                 <div className='spot-detail-page'>
                     <h2>{spot.name}</h2>
                     <div className='sub-info'>
@@ -47,13 +50,14 @@ function SpotDetailPage() {
                         <div className='review-section-top-part'>
                             <div className='star-rating-display'>
                                 <i className="fa-solid fa-star"></i>
-                                <p>{spot.avgStarRating}</p>
+                                <p>{spot.avgStarRating.toFixed(2)}</p>
                             </div>
                             <p> - </p>
                             <div>{`${spot.numReviews} reviews`}</div>
-                            <div className='add-review-btn'>
+                            {/* <div className='add-review-btn'>
                                 <button>Add Your Review</button>
-                            </div>
+                            </div> */}
+                            <ReviewFormModal spotId={spot.id} />
                         </div>
                         <div className='review-list'>
                             <ReviewList id={spot.id} />

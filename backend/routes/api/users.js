@@ -96,7 +96,7 @@ router.get('/:id/reviews', requireAuth, verifyUserId, verifyOwner, async (req, r
             attributes: ['id', 'firstName', 'lastName']
         }, {
             model: Spot,
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', 'previewImage']
         }, {
             model: Image,
             attributes: ['url']
