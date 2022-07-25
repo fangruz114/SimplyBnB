@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadUserReviews } from '../../store/reviews';
+import { loadUserReviews, removeReview } from '../../store/reviews';
 import ReviewFormModal from '../ReviewFormModal';
 import './ReviewListByYou.css';
 
@@ -9,8 +9,6 @@ function ReviewListByYou({ id }) {
     const [isloaded, setIsloaded] = useState(false);
     const reviews = useSelector(state => Object.values(state.reviews));
     const reviewsByYou = reviews.filter(review => review.userId === Number(id));
-    console.log('reviews', reviews);
-    console.log('reviewByYou', reviewsByYou);
 
     useEffect(() => {
         dispatch(loadUserReviews(id))
@@ -21,7 +19,6 @@ function ReviewListByYou({ id }) {
         const date = new Date(string);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const dateNeeded = date.toLocaleDateString(undefined, options);
-        console.log(dateNeeded);
         return dateNeeded;
     }
     return (
@@ -37,8 +34,8 @@ function ReviewListByYou({ id }) {
                         <p>{review.review}</p>
                         <p className='review-date'>{convertDate(review.createdAt)}</p>
                         <div className='review-change'>
-                            <ReviewFormModal spotId={review.Spot.id} />
-                            <button>Delete</button>
+                            <ReviewFormModal spotId={review.Spot.id} change='Edit' reviewId={review.id} />
+                            <button onClick={() => dispatch(removeReview(review.id))}>Delete</button>
                         </div>
                     </div>
                 </div>

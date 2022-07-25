@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import './ProfileButton.css';
 
@@ -27,7 +27,8 @@ function ProfileButton({ user }) {
 
     const logout = (e) => {
         e.preventDefault();
-        dispatch(sessionActions.logout());
+        dispatch(sessionActions.logout())
+            .then(() => (<Redirect to='/' />));
     };
 
     return (
@@ -41,10 +42,10 @@ function ProfileButton({ user }) {
                     <li>{`${user.firstName} ${user.lastName}`}</li>
                     <li>{user.email}</li>
                     <li className='profile-dropdown-reviews'>
-                        <Link to={`users/${user.id}/reviews`}>Manage Reviews</Link>
+                        <Link to={`/users/${user.id}/reviews`}>Manage Reviews</Link>
                     </li>
                     <li>
-                        <Link to={`users/${user.id}/spots`}>Manage Listings</Link>
+                        <Link to={`/users/${user.id}/spots`}>Manage Listings</Link>
                     </li>
                     <li className='profile-dropdown-logout'>
                         <button onClick={logout}>Log Out</button>

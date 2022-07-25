@@ -57,7 +57,7 @@ function SpotDetailPage() {
                             {/* <div className='add-review-btn'>
                                 <button>Add Your Review</button>
                             </div> */}
-                            <ReviewFormModal spotId={spot.id} />
+                            <ReviewFormModal spotId={spot.id} change='Add' reviewId='' />
                         </div>
                         <div className='review-list'>
                             <ReviewList id={spot.id} />

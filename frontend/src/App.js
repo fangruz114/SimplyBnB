@@ -20,7 +20,7 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       <Switch>
-        <Route exact path='/'>
+        <Route exact path={['/', '/spots']}>
           <SpotList />
         </Route>
         <Route path='/spots/:id'>

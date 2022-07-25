@@ -1,26 +1,37 @@
 import React, { useState } from "react";
-import { addReview } from '../../store/reviews';
-import { useDispatch } from "react-redux";
+import { addReview, editReview } from '../../store/reviews';
+import { useDispatch, useSelector } from "react-redux";
 import './ReviewForm.css';
-import { Redirect } from 'react-router-dom';
 
-function ReviewForm({ spotId, onClose }) {
+function ReviewForm({ spotId, onClose, change, reviewId }) {
     const dispatch = useDispatch();
-    const [stars, setStars] = useState(5);
-    const [review, setReview] = useState("");
+    const reviewToEdit = useSelector(state => state.reviews[reviewId]);
+    const [stars, setStars] = useState(reviewToEdit ? reviewToEdit.stars : 5);
+    const [review, setReview] = useState(reviewToEdit ? reviewToEdit.review : "");
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        const addedReview = await dispatch(addReview(spotId, { stars, review })).catch(
-            async (res) => {
-                const data = await res.json();
-                if (data) setErrors(data);
-            }
-        );
-        console.log(addedReview);
-        if (addedReview) return <Redirect to="/" />;
+        if (reviewId) {
+            dispatch(editReview(reviewId, { stars, review }))
+                .then(() => onClose())
+                .catch(
+                    async (res) => {
+                        const data = await res.json();
+                        if (data) setErrors(data);
+                    }
+                );
+        } else {
+            dispatch(addReview(spotId, { stars, review }))
+                .then(() => onClose())
+                .catch(
+                    async (res) => {
+                        const data = await res.json();
+                        if (data) setErrors(data);
+                    }
+                );
+        }
     };
 
 
@@ -30,7 +41,7 @@ function ReviewForm({ spotId, onClose }) {
                 <button className='review-form-close-btn' onClick={onClose}>
                     <i className="fa-solid fa-xmark"></i>
                 </button>
-                <p className="review-text">Add Your Review</p>
+                <p className="review-text">{change} Your Review</p>
             </div>
             <form onSubmit={handleSubmit}>
                 <p className="review-from-welcome">Thanks for sharing your thoughts.</p>

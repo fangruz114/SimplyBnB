@@ -53,9 +53,9 @@ export const addReview = (spotId, newReview) => async (dispatch) => {
     return response;
 };
 
-export const editSpot = (updatedReview) => async (dispatch) => {
+export const editReview = (reviewId, updatedReview) => async (dispatch) => {
     const { review, stars } = updatedReview;
-    const response = await csrfFetch(`/api/reviews/${review.id}`, {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: "PUT",
         body: JSON.stringify({
             review,
