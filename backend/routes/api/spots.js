@@ -356,7 +356,7 @@ router.put('/:id', requireAuth, validateSpotInput, verifySpotId, verifySpotOwner
         price,
         previewImage,
     });
-    return res.json(await Spot.scope("noPreviewImage").findByPk(req.params.id));
+    return res.json(await Spot.findByPk(req.params.id));
 });
 
 router.delete('/:id', requireAuth, verifySpotId, verifySpotOwner, async (req, res, next) => {
@@ -388,7 +388,7 @@ router.post('/', requireAuth, validateSpotInput, async (req, res) => {
         price,
         previewImage,
     });
-    return res.json(await Spot.scope("noPreviewImage").findByPk(newSpot.id));
+    return res.json(await Spot.findByPk(newSpot.id));
 });
 
 router.get('/', validateQuerySearchInput, async (req, res) => {
