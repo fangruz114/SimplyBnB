@@ -33,11 +33,6 @@ module.exports = {
         url: 'https://a0.muscache.com/im/pictures/miso/Hosting-21409981/original/19e82eb8-4125-461c-b832-a45b5482fbdf.jpeg?im_w=1440',
       },
       {
-        spotId: 1,
-        imageableType: 'Spot',
-        url: 'https://a0.muscache.com/im/pictures/323b2430-a7fa-44d7-ba7a-6776d8e682df.jpg?im_w=1440',
-      },
-      {
         reviewId: 1,
         imageableType: 'Review',
         url: 'https://a0.muscache.com/im/pictures/073f3f02-503b-4135-a138-dc0fca5af6d7.jpg?im_w=1200',

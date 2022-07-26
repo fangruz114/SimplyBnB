@@ -20,7 +20,7 @@ function SpotList() {
                     <Link key={spot.id} to={`/spots/${spot.id}`}>
                         <div className='spot-card'>
                             <div className='spot-image'>
-                                <img src={spot.previewImage} alt='previewImage' />
+                                <img className='spot-img-display' src={spot.previewImage} alt='previewImage' />
                             </div>
                             <div className='spot-info'>
                                 <div className='spot-details'>
