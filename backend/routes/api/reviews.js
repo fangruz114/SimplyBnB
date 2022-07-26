@@ -89,7 +89,19 @@ router.put('/:id', requireAuth, validateReviewInput, verifyReviewId, verifyRevie
             review,
             stars,
         });
-        return res.json(reviewToUpdate);
+        const reviewToReturn = await Review.findByPk(reviewToUpdate.id, {
+            include: [{
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            }, {
+                model: Spot,
+                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', 'previewImage']
+            }, {
+                model: Image,
+                attributes: ['url']
+            }]
+        });
+        return res.json(reviewToReturn);
     } catch (err) {
         next(err);
     }
