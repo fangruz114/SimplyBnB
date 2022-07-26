@@ -17,7 +17,6 @@ function ListingForm({ spotId, onClose, change }) {
     const [price, setPrice] = useState(listingToEdit ? listingToEdit.price : 0);
     const [previewImage, setPreviewImage] = useState(listingToEdit ? listingToEdit.previewImage : "");
     const [errors, setErrors] = useState([]);
-    console.log(listingToEdit.previewImage);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
