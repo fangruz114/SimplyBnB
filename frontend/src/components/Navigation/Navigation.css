@@ -17,7 +17,7 @@ nav {
     flex-direction: row;
     justify-content: flex-start;
     position: absolute;
-    left: 15%;
+    left: 20%;
     top: 22px;
     max-height: 30px;
     width: 500px;
@@ -54,7 +54,7 @@ img {
     justify-content: flex-end;
     align-items: center;
     position: fixed;
-    right: 18%;
+    right: 25%;
     text-decoration: none;
     width: 40%;
     height: 40px;

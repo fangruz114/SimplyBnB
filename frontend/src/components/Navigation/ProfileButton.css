@@ -11,8 +11,13 @@
     padding: 5px 5px 5px 10px;
     margin: 5px;
     position: fixed;
-    right: 15%;
+    right: 22%;
     top: 1%;
+    cursor: pointer;
+}
+
+.profile-btn:hover {
+    box-shadow: 2px 2px 3px rgb(221, 221, 221);
 }
 
 .fa-bars {
