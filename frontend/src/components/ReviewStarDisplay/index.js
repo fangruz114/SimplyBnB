@@ -24,7 +24,7 @@ function ReviewStarDisplay({ id }) {
                 reviews && (
                     <>
                         <i className="fa-solid fa-star"></i>
-                        <span className='avg-rating'>{avgStarRating}</span>
+                        <span className='avg-rating'>{avgStarRating === 'NaN' ? 'New' : avgStarRating}</span>
                     </>
                 )
             }

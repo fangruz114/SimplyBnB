@@ -47,8 +47,15 @@ export const loadOneSpot = (id) => async dispatch => {
     return response;
 };
 
+export const loadUserSpots = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/users/${id}/spots`);
+    const data = await response.json();
+    dispatch(getAllSpots(data.Spots));
+    return response;
+};
+
 export const addSpot = (newSpot) => async (dispatch) => {
-    const { address, city, state, country, lat, lng, name, description, price } = newSpot;
+    const { address, city, state, country, lat, lng, name, description, price, previewImage } = newSpot;
     const response = await csrfFetch("/api/spots", {
         method: "POST",
         body: JSON.stringify({
@@ -61,6 +68,7 @@ export const addSpot = (newSpot) => async (dispatch) => {
             name,
             description,
             price,
+            previewImage,
         }),
     });
     const data = await response.json();
@@ -68,9 +76,9 @@ export const addSpot = (newSpot) => async (dispatch) => {
     return response;
 };
 
-export const editSpot = (spot) => async (dispatch) => {
-    const { address, city, state, country, lat, lng, name, description, price } = spot;
-    const response = await csrfFetch(`/api/spots/${spot.id}`, {
+export const editSpot = (spotId, spot) => async (dispatch) => {
+    const { address, city, state, country, lat, lng, name, description, price, previewImage } = spot;
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: "PUT",
         body: JSON.stringify({
             address,
@@ -82,6 +90,7 @@ export const editSpot = (spot) => async (dispatch) => {
             name,
             description,
             price,
+            previewImage,
         }),
     });
     const data = await response.json();
@@ -89,7 +98,7 @@ export const editSpot = (spot) => async (dispatch) => {
     return response;
 };
 
-export const RemoveSpot = (id) => async (dispatch) => {
+export const removeSpot = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'DELETE',
     });

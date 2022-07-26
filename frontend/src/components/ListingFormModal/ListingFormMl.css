@@ -1,0 +1,15 @@
+button.add-listing-btn {
+    display: flex;
+    border: 1px solid rgb(0, 0, 0);
+    background: transparent;
+    height: 50px;
+    max-width: 30%;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.add-listing-btn:hover {
+    background-color: rgb(247, 247, 247);
+}

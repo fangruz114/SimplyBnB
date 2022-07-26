@@ -1,0 +1,65 @@
+.profile-spot-ind {
+    padding: 20px;
+    margin: 20px;
+    border-bottom: 1px solid rgb(220, 224, 224);
+    display: flex;
+    flex-direction: row;
+    width: 100%
+}
+
+.profile-spot-ind img {
+    border-radius: 10px;
+    max-height: 75px;
+    max-width: 75px;
+    padding: 2px;
+    margin-right: 20px;
+}
+
+.listing-edit-info-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%
+}
+
+.spot-listing-info h3 {
+    color: rgb(72, 72, 72);
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.spot-listing-info p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.listing-change {
+    display: flex;
+    flex-direction: row;
+}
+
+.listing-change button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 150px;
+    position: relative;
+    left: 40%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 20px;
+    background-color: rgb(0, 166, 153);
+    color: white;
+    border-radius: 5px;
+    border: 1px solid rgb(1, 141, 130)
+}
+
+.listing-change button:hover {
+    box-shadow: 2px 2px 5px rgb(155, 155, 155);
+    background-color: rgb(0, 166, 153);
+}

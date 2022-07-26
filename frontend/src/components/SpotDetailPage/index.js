@@ -12,7 +12,6 @@ function SpotDetailPage() {
     const { id } = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
     const spot = useSelector(state => state.spots[+id]);
-    console.log('spot', spot);
 
     useEffect(() => {
         dispatch(loadOneSpot(id))
@@ -28,7 +27,7 @@ function SpotDetailPage() {
                     <div className='sub-info'>
                         <div className='star-rating-display'>
                             <i className="fa-solid fa-star"></i>
-                            <p>{spot.avgStarRating.toFixed(2)}</p>
+                            <p>{spot.avgStarRating ? spot.avgStarRating.toFixed(2) : 'New'}</p>
                         </div>
                         <p> - </p>
                         <div>{`${spot.numReviews} reviews`}</div>
@@ -50,13 +49,10 @@ function SpotDetailPage() {
                         <div className='review-section-top-part'>
                             <div className='star-rating-display'>
                                 <i className="fa-solid fa-star"></i>
-                                <p>{spot.avgStarRating.toFixed(2)}</p>
+                                <p>{spot.avgStarRating ? spot.avgStarRating.toFixed(2) : 'New'}</p>
                             </div>
                             <p> - </p>
                             <div>{`${spot.numReviews} reviews`}</div>
-                            {/* <div className='add-review-btn'>
-                                <button>Add Your Review</button>
-                            </div> */}
                             <ReviewFormModal spotId={spot.id} change='Add' reviewId='' />
                         </div>
                         <div className='review-list'>
