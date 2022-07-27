@@ -28,6 +28,9 @@
 .review-content-by-you .review-images {
     display: flex;
     flex-direction: row;
+    max-height: 50px;
+    margin: 5px 5px 10px 5px;
+
 }
 
 .review-content-by-you p {

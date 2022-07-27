@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUserReviews, removeReview } from '../../store/reviews';
 import ReviewFormModal from '../ReviewFormModal';
+import ImageFormModal from '../ImageFormModal';
 import './ReviewListByYou.css';
 
 function ReviewListByYou({ id }) {
@@ -27,13 +28,17 @@ function ReviewListByYou({ id }) {
                 <div key={review.id} className="profile-review-ind">
                     <img src={review.Spot.previewImage} alt='spot-preview' />
                     <div className='review-content-by-you'>
-                        <div className='review-images'>
+                        {/* <div className='review-images'>
                             {review.Images.length > 0 ? review.Images.map(image => (<img src={image.url} alt='review-img-ind' />)) : ''}
-                        </div>
+                        </div> */}
                         <h3>Review for {review.Spot.name}</h3>
                         <p>{review.review}</p>
                         <p className='review-date'>{convertDate(review.createdAt)}</p>
+                        <div className='review-images'>
+                            {review.Images.length > 0 ? review.Images.map((image, index) => (<img key={index} src={image.url} alt='review-img-ind' />)) : ''}
+                        </div>
                         <div className='review-change'>
+                            {/* <ImageFormModal id={review.id} /> */}
                             <ReviewFormModal spotId={review.Spot.id} change='Edit' reviewId={review.id} />
                             <button onClick={() => dispatch(removeReview(review.id))}>Delete</button>
                         </div>
