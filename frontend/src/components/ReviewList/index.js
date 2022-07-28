@@ -18,7 +18,7 @@ function ReviewList({ id }) {
                 spotReviews && (
                     <>
                         {spotReviews.map(review => (
-                            <div className='ind-review'>
+                            <div key={review.id} className='ind-review'>
                                 <div className='review-list-rating'>
                                     <i className="fa-solid fa-star"></i>
                                     <p>{review.stars}</p>

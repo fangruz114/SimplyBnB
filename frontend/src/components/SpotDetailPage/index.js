@@ -5,6 +5,7 @@ import { loadOneSpot } from '../../store/spots';
 import ReviewList from '../ReviewList';
 import ReviewFormModal from '../ReviewFormModal';
 import './SpotDetailPage.css';
+import BookingForm from '../BookingForm';
 
 
 function SpotDetailPage() {
@@ -12,6 +13,7 @@ function SpotDetailPage() {
     const { id } = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
     const spot = useSelector(state => state.spots[+id]);
+    const sessionUser = useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(loadOneSpot(id))
@@ -36,28 +38,35 @@ function SpotDetailPage() {
                     <div className='image-layout'>
                         <img className='spot-detail-main-img' src={spot.previewImage} alt={spot.id} />
                         <div className='side-images'>
-                            {spot.images && (spot.images.map(url => (
-                                <img key={spot.id} className='spot-detail-side-img' src={url.url} alt={spot.id} />
+                            {spot.images && (spot.images.map((url, index) => (
+                                <img key={index} className='spot-detail-side-img' src={url.url} alt={spot.id} />
                             )))}
                         </div>
                     </div>
-                    <div className='spot-infomation'>
-                        <p>{`Entire cabin hosted by ${spot.Owners.firstName}`}</p>
-                        <div className='spot-description'>{spot.description}</div>
-                    </div>
-                    <div className='reviews'>
-                        <div className='review-section-top-part'>
-                            <div className='star-rating-display'>
-                                <i className="fa-solid fa-star"></i>
-                                <p>{spot.avgStarRating ? spot.avgStarRating.toFixed(2) : 'New'}</p>
+                    <div className='bottom-half'>
+                        <div className='left-panel'>
+                            <div className='spot-infomation'>
+                                <p>{`Entire cabin hosted by ${spot.Owners.firstName}`}</p>
+                                <div className='spot-description'>{spot.description}</div>
                             </div>
-                            <p> - </p>
-                            <div>{`${spot.numReviews} reviews`}</div>
-                            <ReviewFormModal spotId={spot.id} change='Add' reviewId='' />
+                            <div className='reviews'>
+                                <div className='review-section-top-part'>
+                                    <div className='star-rating-display'>
+                                        <i className="fa-solid fa-star"></i>
+                                        <p>{spot.avgStarRating ? spot.avgStarRating.toFixed(2) : 'New'}</p>
+                                    </div>
+                                    <p> - </p>
+                                    <div>{`${spot.numReviews} reviews`}</div>
+                                    <ReviewFormModal user={sessionUser} spotId={spot.id} change='Add' reviewId='' />
+                                </div>
+                                <div className='review-list'>
+                                    <ReviewList id={spot.id} />
+                                </div>
+                            </div>
                         </div>
-                        <div className='review-list'>
-                            <ReviewList id={spot.id} />
-                        </div>
+                        {/* <div className='right-panel'>
+                            <BookingForm id={spot.id} />
+                        </div> */}
                     </div>
                 </div>
             )}

@@ -32,6 +32,11 @@
     border: 1px solid rgb(1, 141, 130)
 }
 
+.listings-by-you .title button:hover {
+    box-shadow: 2px 2px 5px rgb(155, 155, 155);
+    background-color: rgb(0, 166, 153);
+}
+
 .listings-by-you h1 {
     color: rgb(92, 92, 92);
     padding: 2px;

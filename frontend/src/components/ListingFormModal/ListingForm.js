@@ -74,6 +74,7 @@ function ListingForm({ spotId, onClose, change }) {
                         <input
                             type="text"
                             value={address}
+                            maxLength='100'
                             onChange={(e) => setAddress(e.target.value)}
                             required
                         />
@@ -85,6 +86,7 @@ function ListingForm({ spotId, onClose, change }) {
                         <input
                             type="text"
                             value={city}
+                            maxLength='20'
                             onChange={(e) => setCity(e.target.value)}
                             required
                         />
@@ -96,6 +98,7 @@ function ListingForm({ spotId, onClose, change }) {
                         <input
                             type="text"
                             value={state}
+                            maxLength='15'
                             onChange={(e) => setState(e.target.value)}
                             required
                         />
@@ -107,6 +110,7 @@ function ListingForm({ spotId, onClose, change }) {
                         <input
                             type="text"
                             value={country}
+                            maxLength='30'
                             onChange={(e) => setCountry(e.target.value)}
                             required
                         />

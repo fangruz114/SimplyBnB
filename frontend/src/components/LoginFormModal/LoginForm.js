@@ -50,7 +50,7 @@ function LoginForm({ onClose }) {
                     {errors.message}
                 </ul>
                 <div className="form-element">
-                    <label >
+                    <label>
                         Email
                         <input
                             type="text"

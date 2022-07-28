@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import ReviewForm from './ReviewForm';
+import LoginForm from '../LoginFormModal/LoginForm';
 import './ReviewFormMl.css';
 
-function ReviewFormModal({ spotId, change, reviewId }) {
+function ReviewFormModal({ user, spotId, change, reviewId }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -12,7 +13,8 @@ function ReviewFormModal({ spotId, change, reviewId }) {
             {showModal && (
                 <div className='review-form-modal'>
                     <Modal onClose={() => setShowModal(false)}>
-                        <ReviewForm onClose={() => setShowModal(false)} spotId={spotId} change={change} reviewId={reviewId} />
+                        {user ? <ReviewForm onClose={() => setShowModal(false)} spotId={spotId} change={change} reviewId={reviewId} />
+                            : <LoginForm onClose={() => setShowModal(false)} />}
                     </Modal>
                 </div>
             )}

@@ -39,7 +39,7 @@ function ReviewListByYou({ id }) {
                         </div>
                         <div className='review-change'>
                             {/* <ImageFormModal id={review.id} /> */}
-                            <ReviewFormModal spotId={review.Spot.id} change='Edit' reviewId={review.id} />
+                            <ReviewFormModal user={true} spotId={review.Spot.id} change='Edit' reviewId={review.id} />
                             <button onClick={() => dispatch(removeReview(review.id))}>Delete</button>
                         </div>
                     </div>

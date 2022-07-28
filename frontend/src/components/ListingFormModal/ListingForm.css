@@ -74,10 +74,16 @@
     border: none;
     outline: none;
     font-size: 18px;
-    background: linear-gradient(to right, rgb(215, 10, 101), rgb(254, 56, 92));
+    background: linear-gradient(to left, rgb(215, 10, 101), rgb(254, 56, 56), rgb(215, 10, 101));
     color: white;
     border-radius: 10px;
+    background-size: 200%;
+    transition: 1s;
     cursor: pointer;
+}
+
+.form-element button:hover {
+    background-position: right;
 }
 
 .listing-form-welcome {
