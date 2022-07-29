@@ -28,18 +28,18 @@ function App() {
         <Route exact path='/spots/:id'>
           <SpotDetailPage />
         </Route>
-        {/* <Route path='/users/:id/bookings'>
+        <Route path='/users/:id/bookings'>
           <ManageBookingList />
-        </Route> */}
+        </Route>
         <Route path='/users/:id/spots'>
           <ManageListingPage />
         </Route>
         <Route path='/users/:id/reviews'>
           <ManageReviewPage />
         </Route>
-        {/* <Route path='/spots/:spotId/bookings/:id'>
+        <Route path='/spots/:spotId/bookings/:id'>
           <BookingConfirmation />
-        </Route> */}
+        </Route>
       </Switch>
     </>
   );

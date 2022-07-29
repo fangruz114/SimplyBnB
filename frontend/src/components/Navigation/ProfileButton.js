@@ -43,9 +43,9 @@ function ProfileButton({ user }) {
                     <li>{`${user.firstName} ${user.lastName}`}</li>
                     <li>{user.email}</li>
                     <li className='profile-dropdown-links'>
-                        {/* <Link to={`/users/${user.id}/bookings`}>Trips</Link>
+                        <Link to={`/users/${user.id}/bookings`}>Trips</Link>
                     </li>
-                    <li> */}
+                    <li>
                         <Link to={`/users/${user.id}/reviews`}>Manage Reviews</Link>
                     </li>
                     <li>

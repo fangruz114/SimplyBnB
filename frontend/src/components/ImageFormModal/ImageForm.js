@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { addReviewImage } from "../../store/images";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import './ImageForm.css';
+import { loadUserReviews } from "../../store/reviews";
 
 function ImageForm({ onClose, id }) {
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
     const [url, setUrl] = useState("");
     const [errors, setErrors] = useState({});
 
@@ -13,6 +15,7 @@ function ImageForm({ onClose, id }) {
         setErrors({});
         return dispatch(addReviewImage(id, { url }))
             .then(() => onClose())
+            .then(() => dispatch(loadUserReviews(sessionUser.id)))
             .catch(
                 async (res) => {
                     const data = await res.json();

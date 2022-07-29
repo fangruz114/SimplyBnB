@@ -66,7 +66,7 @@ function SpotDetailPage() {
                             </div>
                         </div>
                         <div className='right-panel'>
-                            {/* <BookingForm id={spot.id} /> */}
+                            <BookingForm id={spot.id} />
                         </div>
                     </div>
                 </div>
