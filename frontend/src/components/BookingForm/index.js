@@ -30,6 +30,15 @@ function BookingForm({ id }) {
         } else return setErrors({ "message": "Sign in required" });
     };
 
+    function calDays(start, end) {
+        let date1 = new Date(start);
+        let date2 = new Date(end);
+        let difference = date2.getTime() - date1.getTime();
+        console.log(difference);
+        let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
+        return totalDays;
+    }
+
     return (
         <div className='booking-form'>
             <div className='booking-form-top-info'>
@@ -80,8 +89,8 @@ function BookingForm({ id }) {
             <div className='price-cal'>
                 <p>You won't be charged yet</p>
                 <div className='booking-price'>
-                    <div>{(startDate && endDate) ? (`$${spot.price} x ${new Date(endDate).getDate() - new Date(startDate).getDate()} nights`) : (`$${spot.price} x 0 night`)}</div>
-                    <div>{(startDate && endDate) ? (`$${(Number(spot.price) * (new Date(endDate).getDate() - new Date(startDate).getDate())).toFixed(0)}`) : `$0`}</div>
+                    <div>{(startDate && endDate && calDays(startDate, endDate) > 0) ? (`$${spot.price} x ${calDays(startDate, endDate)} nights`) : (`$${spot.price} x 0 night`)}</div>
+                    <div>{(startDate && endDate && calDays(startDate, endDate) > 0) ? (`$${(Number(spot.price) * calDays(startDate, endDate)).toFixed(0)}`) : `$0`}</div>
                 </div>
                 <div className='cleaning-fee'>
                     <p>Cleaning fee</p>
@@ -89,12 +98,12 @@ function BookingForm({ id }) {
                 </div>
                 <div className='service-fee'>
                     <p>Service fee</p>
-                    <p>{(startDate && endDate) ? (`$${(Number(spot.price) * (new Date(endDate).getDate() - new Date(startDate).getDate()) * 0.147).toFixed(0)}`) : `$0`}</p>
+                    <p>{(startDate && endDate && calDays(startDate, endDate) > 0) ? (`$${(Number(spot.price) * (calDays(startDate, endDate)) * 0.147).toFixed(0)}`) : `$0`}</p>
                 </div>
             </div>
             <div className='total-price'>
                 <p>Total before taxes</p>
-                <p>{(startDate && endDate) ? (`$${(Number(spot.price) * (new Date(endDate).getDate() - new Date(startDate).getDate()) * 1.147 + 200).toFixed(0)}`) : `$0`}</p>
+                <p>{(startDate && endDate && calDays(startDate, endDate) > 0) ? (`$${(Number(spot.price) * (calDays(startDate, endDate)) * 1.147 + 200).toFixed(0)}`) : `$0`}</p>
             </div>
         </div>
     );
