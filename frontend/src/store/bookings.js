@@ -35,7 +35,6 @@ export const loadUserBookings = (userId) => async (dispatch) => {
 export const loadSpotBookings = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/bookings`);
     const data = await response.json();
-    console.log('data', data);
     dispatch(getBookings(data.Bookings));
     return response;
 };

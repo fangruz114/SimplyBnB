@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { loadSpotBookings, removeBooking } from '../../store/bookings';
 import { loadOneSpot } from '../../store/spots';
+// import SimpleMap from '../GoogleMap';
 import './BookingConfirmation.css';
 
 function BookingConfirmation() {
@@ -13,9 +14,6 @@ function BookingConfirmation() {
     const spot = useSelector(state => state.spots[spotId]);
     const booking = useSelector(state => state.bookings[id]);
     const user = useSelector(state => state.session.user);
-    console.log('spot', spot);
-    console.log('booking', booking);
-    console.log('user', user);
 
     useEffect(() => {
         dispatch(loadSpotBookings(spotId));
@@ -79,14 +77,17 @@ function BookingConfirmation() {
                             ) : ''}
                             {new Date(booking.startDate) >= new Date() ? (
                                 <button onClick={cancelBooking}>
-                                    <i class="fa-solid fa-calendar-xmark"></i>
+                                    <i className="fa-solid fa-calendar-xmark"></i>
                                     <p>Cancel Booking</p>
                                 </button>
                             ) : ''}
                         </div>
                     </div>
                     <div className='booking-conf-right-panel'>
-
+                        <iframe
+                            src={`https://www.google.com/maps?q=${spot.lat},${spot.lng}&hl=es;&output=embed`}
+                            title={spot.id}
+                            width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 )}
