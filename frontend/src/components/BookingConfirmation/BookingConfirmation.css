@@ -1,0 +1,178 @@
+.booking-confirmation {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 1000px;
+    position: absolute;
+    top: 5%;
+    left: 1%;
+    padding: 10px 5px;
+    margin: 27px 2px;
+    z-index: -1;
+    font-family: 'Poppins', sans-serif;
+}
+
+.booking-conf-left-panel {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 100%;
+    background: white;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border-radius: 5px;
+}
+
+.left-panel-top {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+
+.left-panel-top .spot-image-background {
+    max-width: 150%;
+    max-height: 150%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.left-panel-top .go-back-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    left: 27px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.left-panel-top .go-back-button .fa-arrow-left {
+    font-size: 15px;
+}
+
+.left-panel-top .spot-img-spot-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 80px;
+    left: 40px;
+}
+
+.left-panel-top .spot-img-spot-info div {
+    font-size: 30px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.booking-conf-detail-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.checkin-checkout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100px;
+}
+
+.checkin-checkout .checkin,
+.checkin-checkout .checkout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    right: -40px;
+    width: 42%;
+    padding: 20px 0px 20px 10px;
+}
+
+.checkin-checkout .checkin {
+    border-right: 1px solid rgb(212, 211, 211);
+    border-bottom: 1px solid rgb(212, 211, 211);
+}
+
+.checkin-checkout .checkout {
+    padding-left: 30px;
+    border-bottom: 1px solid rgb(212, 211, 211);
+}
+
+.checkin-checkout .checkin p,
+.checkin-checkout .checkout p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.checkin-checkout .checkin div,
+.checkin-checkout .checkout div {
+    font-weight: 100;
+}
+
+.booking-conf-detail-info a {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+    color: black;
+    margin: 0px 40px 0px 40px;
+    padding: 20px 0px 20px 5px;
+    font-size: 17px;
+    border-bottom: 1px solid rgb(212, 211, 211);
+
+}
+
+.booking-conf-detail-info a:hover {
+    background-color: rgb(247, 247, 247)
+}
+
+.booking-conf-detail-info a .fa-location-dot,
+.booking-conf-detail-info a .fa-desktop {
+    margin-right: 15px;
+}
+
+.booking-conf-detail-info a p {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.booking-conf-detail-info button {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border: none;
+    height: 100%;
+    padding: 20px 0px 20px 0px;
+    margin: 0px 40px 0px 40px;
+    text-align: start;
+    font-size: 16px;
+    font-weight: 100;
+    font-family: 'Poppins', sans-serif;
+    border-bottom: 1px solid rgb(212, 211, 211);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.booking-conf-detail-info button:hover {
+    background-color: rgb(247, 247, 247);
+}
+
+.booking-conf-detail-info button .fa-pen-to-square,
+.booking-conf-detail-info button .fa-calendar-xmark {
+    padding: 3px 0px 0px 5px;
+    margin-right: 15px;
+}

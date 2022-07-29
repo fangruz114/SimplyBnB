@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Route } from 'react-router-dom';
 import { loadOneSpot } from '../../store/spots';
 import ReviewList from '../ReviewList';
 import ReviewFormModal from '../ReviewFormModal';
+import BookingConfirmation from '../BookingConfirmation';
 import './SpotDetailPage.css';
 import BookingForm from '../BookingForm';
 
@@ -64,12 +65,15 @@ function SpotDetailPage() {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className='right-panel'>
-                            <BookingForm id={spot.id} />
-                        </div> */}
+                        <div className='right-panel'>
+                            {/* <BookingForm id={spot.id} /> */}
+                        </div>
                     </div>
                 </div>
             )}
+            <Route path='/bookings/:id'>
+                <BookingConfirmation spotId={id} />
+            </Route>
         </>
     );
 }

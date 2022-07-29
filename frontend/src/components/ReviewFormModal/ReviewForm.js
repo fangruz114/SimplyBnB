@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { addReview, editReview } from '../../store/reviews';
+import { addReview, editReview, loadSpotReviews } from '../../store/reviews';
 import { useDispatch, useSelector } from "react-redux";
 import './ReviewForm.css';
+import { loadOneSpot } from "../../store/spots";
 
 function ReviewForm({ spotId, onClose, change, reviewId }) {
     const dispatch = useDispatch();
@@ -25,6 +26,8 @@ function ReviewForm({ spotId, onClose, change, reviewId }) {
         } else {
             dispatch(addReview(spotId, { stars, review }))
                 .then(() => onClose())
+                .then(() => dispatch(loadOneSpot(spotId)))
+                .then(() => dispatch(loadSpotReviews(spotId)))
                 .catch(
                     async (res) => {
                         const data = await res.json();

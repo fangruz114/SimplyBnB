@@ -197,10 +197,10 @@ router.post('/:id/images', requireAuth, verifySpotId, verifySpotOwner, validateI
 router.post('/:id/bookings', requireAuth, verifySpotId, validateBookingInput, verifyBookingSchedule, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.id);
     if (req.user.id == spot.ownerId) {
-        const err = new Error('Forbidden');
+        const err = new Error('Spot owner is not allowed to book.');
         err.status = 403;
-        err.title = "Forbidden";
-        err.message = "Forbidden";
+        err.title = "Spot owner is not allowed to book.";
+        err.message = "Spot owner is not allowed to book.";
         next(err);
     }
     const { startDate, endDate } = req.body;
@@ -249,6 +249,7 @@ router.get('/:id/bookings', requireAuth, verifySpotId, async (req, res) => {
                 userId: req.user.id
             },
             attributes: [
+                'id',
                 'spotId',
                 ['stDate', 'startDate'],
                 ['edDate', 'endDate'],

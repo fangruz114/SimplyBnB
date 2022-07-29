@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -33,7 +33,6 @@ const Navigation = ({ isLoaded }) => {
                 </div>
                 <ul className='nav-menu'>
                     <li className='nav-link'>
-                        <NavLink exact to="/">Home</NavLink>
                         {sessionLinks}
                     </li>
                 </ul>

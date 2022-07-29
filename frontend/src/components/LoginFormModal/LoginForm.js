@@ -56,6 +56,7 @@ function LoginForm({ onClose }) {
                             type="text"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            maxLength='50'
                             required
                         />
                     </label>
@@ -66,6 +67,7 @@ function LoginForm({ onClose }) {
                         <input
                             type="password"
                             value={password}
+                            maxLength='50'
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />

@@ -12,6 +12,13 @@
     font-family: 'Poppins', sans-serif;
 }
 
+@media screen and (max-width: 2000px) {
+    .spot-detail-page {
+        width: 94%;
+        left: 3%;
+    }
+}
+
 .spot-detail-page h2 {
     font-weight: 500;
     margin-bottom: 10px;
@@ -64,6 +71,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .image-layout .side-images img {
@@ -74,14 +82,14 @@
 }
 
 .spot-detail-side-img {
-    width: 370px;
+    width: 100%;
     height: 370px;
     object-fit: cover;
 }
 
 .spot-infomation {
     margin-top: 30px;
-    width: 60%;
+    width: 80%;
 }
 
 .spot-infomation p {
@@ -101,7 +109,7 @@
     border-top: 1px solid rgb(216, 216, 216);
     padding: 30px 10px 30px 0px;
     font-size: 20px;
-    width: 60%;
+    width: 80%;
 }
 
 .reviews .review-section-top-part {
@@ -123,6 +131,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin: 20px 10px 20px 0px;
+    width: 100%;
 }
 
 .add-review-btn {

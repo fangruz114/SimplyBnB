@@ -1,0 +1,24 @@
+.user-trip-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 55%;
+    position: absolute;
+    top: 7%;
+    left: 19%;
+    padding: 10px 20px;
+    margin: 30px 5px;
+    z-index: -1;
+    font-family: 'Poppins', sans-serif;
+}
+
+.user-trip-list h1 {
+    font-weight: 500;
+}
+
+.user-booking-list-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

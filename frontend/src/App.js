@@ -7,6 +7,8 @@ import SpotList from "./components/SpotList";
 import SpotDetailPage from "./components/SpotDetailPage/index";
 import ManageReviewPage from "./components/ManageReviewPage";
 import ManageListingPage from "./components/ManageListingPage";
+import BookingConfirmation from "./components/BookingConfirmation";
+import ManageBookingList from "./components/ManageBookingList";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,15 +25,21 @@ function App() {
         <Route exact path={['/', '/spots']}>
           <SpotList />
         </Route>
-        <Route path='/spots/:id'>
+        <Route exact path='/spots/:id'>
           <SpotDetailPage />
         </Route>
+        {/* <Route path='/users/:id/bookings'>
+          <ManageBookingList />
+        </Route> */}
         <Route path='/users/:id/spots'>
           <ManageListingPage />
         </Route>
         <Route path='/users/:id/reviews'>
           <ManageReviewPage />
         </Route>
+        {/* <Route path='/spots/:spotId/bookings/:id'>
+          <BookingConfirmation />
+        </Route> */}
       </Switch>
     </>
   );

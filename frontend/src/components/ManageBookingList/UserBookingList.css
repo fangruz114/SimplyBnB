@@ -1,0 +1,36 @@
+.user-booking-ind-container {
+    height: 100px;
+    width: 30%;
+    margin: 20px 20px 20px 20px;
+}
+
+.user-booking-ind-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.user-booking-ind {
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.user-booking-ind img.user-booking-list-preImg {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+    margin: 6px 20px 6px 0px;
+}
+
+.user-booking-ind .user-booking-info h4 {
+    font-weight: 500;
+    margin: 10px 0px 6px 3px;
+}
+
+.user-booking-ind .user-booking-info p {
+    font-size: 13px;
+    color: rgb(89, 89, 89);
+}

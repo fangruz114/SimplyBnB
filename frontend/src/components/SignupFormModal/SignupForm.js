@@ -44,6 +44,7 @@ function SignupForm({ onClose }) {
                         <input
                             type="text"
                             value={firstName}
+                            maxLength='30'
                             onChange={(e) => setFirstName(e.target.value)}
                             required
                         />
@@ -55,6 +56,7 @@ function SignupForm({ onClose }) {
                         <input
                             type="text"
                             value={lastName}
+                            maxLength='30'
                             onChange={(e) => setLastName(e.target.value)}
                             required
                         />
@@ -66,6 +68,7 @@ function SignupForm({ onClose }) {
                         <input
                             type="text"
                             value={email}
+                            maxLength='50'
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
@@ -77,6 +80,7 @@ function SignupForm({ onClose }) {
                         <input
                             type="password"
                             value={password}
+                            maxLength='50'
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
@@ -88,6 +92,7 @@ function SignupForm({ onClose }) {
                         <input
                             type="password"
                             value={confirmPassword}
+                            maxLength='50'
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                         />
