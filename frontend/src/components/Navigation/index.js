@@ -27,7 +27,7 @@ const Navigation = ({ isLoaded }) => {
             <nav>
                 <div className='logo'>
                     <Link to='/'>
-                        <img src='https://cdn.usbrandcolors.com/images/logos/airbnb-logo.svg' alt='logo' />
+                        <img src='https://i.imgur.com/8wPO9DG.png' alt='logo' />
                         <div className='site-name'>Simplybnb</div>
                     </Link>
                 </div>
