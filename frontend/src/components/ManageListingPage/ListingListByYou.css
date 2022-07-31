@@ -8,19 +8,25 @@
     box-sizing: border-box;
 }
 
-.profile-spot-ind img {
+.profile-spot-ind a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manage-listing-spot-main-img {
+    max-height: 150px;
+    max-width: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.spot-listing-info img {
     border-radius: 10px;
     max-height: 75px;
     max-width: 75px;
     padding: 2px;
     margin-right: 20px;
-}
-
-.profile-spot-ind a>img {
-    height: 200px;
-    width: 200px;
-    object-fit: cover;
-
 }
 
 .listing-edit-info-bar {
@@ -29,7 +35,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-left: 10px;
+    margin-left: 40px;
 }
 
 .spot-listing-info h3 {
