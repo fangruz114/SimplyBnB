@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { addReviewImage } from "../../store/images";
+import { addReviewImage, addSpotImage } from "../../store/images";
 import { useDispatch, useSelector } from "react-redux";
 import './ImageForm.css';
 import { loadUserReviews } from "../../store/reviews";
+import { loadOneSpot } from '../../store/spots';
 
-function ImageForm({ onClose, id }) {
+function ImageForm({ onClose, id, type }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [url, setUrl] = useState("");
@@ -13,15 +14,27 @@ function ImageForm({ onClose, id }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors({});
-        return dispatch(addReviewImage(id, { url }))
-            .then(() => onClose())
-            .then(() => dispatch(loadUserReviews(sessionUser.id)))
-            .catch(
-                async (res) => {
-                    const data = await res.json();
-                    if (data) setErrors(data);
-                }
-            );
+        if (type === 'review') {
+            return dispatch(addReviewImage(id, { url }))
+                .then(() => onClose())
+                .then(() => dispatch(loadUserReviews(sessionUser.id)))
+                .catch(
+                    async (res) => {
+                        const data = await res.json();
+                        if (data) setErrors(data);
+                    }
+                );
+        } else if (type === 'spot') {
+            return dispatch(addSpotImage(id, { url }))
+                .then(() => onClose())
+                .then(() => dispatch(loadOneSpot(id)))
+                .catch(
+                    async (res) => {
+                        const data = await res.json();
+                        if (data) setErrors(data);
+                    }
+                );
+        }
     };
 
     return (

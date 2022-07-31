@@ -99,7 +99,7 @@ router.get('/:id/reviews', requireAuth, verifyUserId, verifyOwner, async (req, r
             attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', 'previewImage']
         }, {
             model: Image,
-            attributes: ['url']
+            attributes: ['id', 'url']
         }]
     });
     res.json({ Reviews: reviews });

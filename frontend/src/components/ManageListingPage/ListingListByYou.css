@@ -60,6 +60,6 @@
 }
 
 .listing-change button:hover {
-    box-shadow: 2px 2px 5px rgb(155, 155, 155);
+    box-shadow: 2px 2px 2px rgb(155, 155, 155);
     background-color: rgb(0, 166, 153);
 }

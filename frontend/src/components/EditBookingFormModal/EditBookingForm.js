@@ -2,12 +2,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { editBooking, loadSpotBookings } from '../../store/bookings';
 import '../BookingForm/BookingForm.css';
-import { useHistory } from 'react-router-dom';
 import './EditBookingForm.css';
 
 function EditBookingForm({ onClose, spotId, id }) {
     const dispatch = useDispatch();
-    const history = useHistory();
     const spot = useSelector(state => state.spots[spotId]);
     const sessionUser = useSelector(state => state.session.user);
     const booking = useSelector(state => state.bookings[id])

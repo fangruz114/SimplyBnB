@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal';
 import ImageForm from './ImageForm';
 import './ImageFormMl.css';
 
-function ImageFormModal({ id }) {
+function ImageFormModal({ id, type }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -12,7 +12,7 @@ function ImageFormModal({ id }) {
             {showModal && (
                 <div className='image-form-modal'>
                     <Modal onClose={() => setShowModal(false)}>
-                        <ImageForm onClose={() => setShowModal(false)} id={id} />
+                        <ImageForm onClose={() => setShowModal(false)} id={id} type={type} />
                     </Modal>
                 </div>
             )}

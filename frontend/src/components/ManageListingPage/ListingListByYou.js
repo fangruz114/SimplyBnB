@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUserSpots, removeSpot } from '../../store/spots';
 import ListingFormModal from '../ListingFormModal';
+import ImageFormModal from '../ImageFormModal';
+import SpotImages from './SpotImages';
 import './ListingListByYou.css';
 
 function ListingListByYou({ id }) {
@@ -28,11 +30,13 @@ function ListingListByYou({ id }) {
                     <img src={spot.previewImage} alt='spot-preview' />
                     <div className='listing-edit-info-bar'>
                         <div className='spot-listing-info'>
+                            <SpotImages spotId={spot.id} />
                             <h3>{spot.name}</h3>
                             <p>{`${spot.city}, ${spot.state}`}</p>
                             <p className='listing-update-date'>Last Update: {convertDate(spot.updatedAt)}</p>
                         </div>
                         <div className='listing-change'>
+                            <ImageFormModal id={spot.id} type='spot' />
                             <ListingFormModal spotId={spot.id} change='Edit Listing' />
                             <button className='delete-spots' onClick={() => dispatch(removeSpot(spot.id))}>Delete Listing</button>
                         </div>

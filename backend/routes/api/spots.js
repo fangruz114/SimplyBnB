@@ -174,7 +174,24 @@ const verifyBookingSchedule = async (req, res, next) => {
     next();
 };
 
-router.post('/:id/images', requireAuth, verifySpotId, verifySpotOwner, validateImageInput, async (req, res, next) => {
+const verifySpotImageMaxCount = async (req, res, next) => {
+    const images = await Image.findAll({
+        where: {
+            imageableType: 'Spot',
+            spotId: req.params.id,
+        }
+    });
+    if (images.length >= 4) {
+        const err = new Error('Maximum number of images for this resource was reached');
+        err.status = 400;
+        err.title = "Maximum number of images for this resource was reached";
+        err.message = "Maximum number of images for this resource was reached";
+        next(err);
+    }
+    next();
+};
+
+router.post('/:id/images', requireAuth, verifySpotId, verifySpotOwner, verifySpotImageMaxCount, validateImageInput, async (req, res, next) => {
     try {
         const newImage = await Image.create({
             spotId: req.params.id,
@@ -293,7 +310,7 @@ router.get('/:id/reviews', verifySpotId, async (req, res, next) => {
                 attributes: ['id', 'firstName', 'lastName']
             }, {
                 model: Image,
-                attributes: ['url']
+                attributes: ['id', 'url']
             }]
         });
         return res.json({ Reviews: reviews });
@@ -313,7 +330,7 @@ router.get('/:id', verifySpotId, async (req, res) => {
     });
     const images = await Image.findAll({
         where: { spotId: req.params.id },
-        attributes: ['url']
+        attributes: ['id', 'url']
     });
     const owners = await User.findByPk(spot.ownerId, {
         attributes: ['id', 'firstName', 'lastName']
