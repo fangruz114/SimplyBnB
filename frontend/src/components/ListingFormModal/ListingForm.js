@@ -10,11 +10,11 @@ function ListingForm({ spotId, onClose, change }) {
     const [city, setCity] = useState(listingToEdit ? listingToEdit.city : "");
     const [state, setState] = useState(listingToEdit ? listingToEdit.state : "");
     const [country, setCountry] = useState(listingToEdit ? listingToEdit.country : "");
-    const [lat, setLat] = useState(listingToEdit ? listingToEdit.lat : 0);
-    const [lng, setLng] = useState(listingToEdit ? listingToEdit.lng : 0);
+    const [lat, setLat] = useState(listingToEdit && listingToEdit != 0 ? listingToEdit.lat : null);
+    const [lng, setLng] = useState(listingToEdit ? listingToEdit.lng : null);
     const [name, setName] = useState(listingToEdit ? listingToEdit.name : "");
     const [description, setDescription] = useState(listingToEdit ? listingToEdit.description : "");
-    const [price, setPrice] = useState(listingToEdit ? listingToEdit.price : 0);
+    const [price, setPrice] = useState(listingToEdit ? listingToEdit.price : null);
     const [previewImage, setPreviewImage] = useState(listingToEdit ? listingToEdit.previewImage : "");
     const [errors, setErrors] = useState([]);
 
@@ -39,7 +39,7 @@ function ListingForm({ spotId, onClose, change }) {
                 .catch(
                     async (res) => {
                         const data = await res.json();
-                        if (data) setErrors(data);
+                        if (data && data.errors) setErrors(data.errors);
                     }
                 );
         } else {
@@ -48,7 +48,7 @@ function ListingForm({ spotId, onClose, change }) {
                 .catch(
                     async (res) => {
                         const data = await res.json();
-                        if (data) setErrors(data);
+                        if (data && data.errors) setErrors(data.errors);
                     }
                 );
         }
@@ -66,7 +66,7 @@ function ListingForm({ spotId, onClose, change }) {
             <form onSubmit={handleSubmit}>
                 <p className="listing-form-welcome">Welcome! Thank you for listing your property with us.</p>
                 <ul>
-                    {errors.message}
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <div className="form-element">
                     <label>
@@ -86,6 +86,7 @@ function ListingForm({ spotId, onClose, change }) {
                         <input
                             type="text"
                             value={city}
+                            minLength='2'
                             maxLength='20'
                             onChange={(e) => setCity(e.target.value)}
                             required
@@ -98,6 +99,7 @@ function ListingForm({ spotId, onClose, change }) {
                         <input
                             type="text"
                             value={state}
+                            minLength='2'
                             maxLength='15'
                             onChange={(e) => setState(e.target.value)}
                             required
@@ -175,7 +177,7 @@ function ListingForm({ spotId, onClose, change }) {
                         <input
                             type="number"
                             value={price}
-                            min='0'
+                            min='0.01'
                             step='0.01'
                             onChange={(e) => setPrice(e.target.value)}
                             required

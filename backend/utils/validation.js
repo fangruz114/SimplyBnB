@@ -14,7 +14,7 @@ const handleValidationErrors = (req, _res, next) => {
 
         const errors = validationErrors
             .array()
-            .map(error => `${error.msg}`)
+            .map(error => `${error.param}: ${error.msg}`)
 
         const err = Error('Validation error');
         err.errors = errors;

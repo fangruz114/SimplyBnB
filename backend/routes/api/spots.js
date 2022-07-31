@@ -23,12 +23,12 @@ const validateSpotInput = [
         .exists({ checkFalsy: true })
         .withMessage('Country is required'),
     check('lat')
-        .exists({ checkFalsy: true })
+        .exists({ checkFalsy: false })
         .isNumeric()
         .custom(v => v >= -90 && v <= 90)
         .withMessage('Latitude is not valid'),
     check('lng')
-        .exists({ checkFalsy: true })
+        .exists({ checkFalsy: false })
         .isNumeric()
         .custom(v => v >= -180 && v <= 180)
         .withMessage('Longitude is not valid'),
