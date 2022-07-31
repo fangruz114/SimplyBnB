@@ -1,26 +1,28 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import ReviewStarDisplay from '../ReviewStarDisplay';
-import { addBooking } from '../../store/bookings';
-import './BookingForm.css';
+import { editBooking, loadSpotBookings } from '../../store/bookings';
+import '../BookingForm/BookingForm.css';
 import { useHistory } from 'react-router-dom';
+import './EditBookingForm.css';
 
-function BookingForm({ id }) {
+function EditBookingForm({ onClose, spotId, id }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const spot = useSelector(state => state.spots[id]);
+    const spot = useSelector(state => state.spots[spotId]);
     const sessionUser = useSelector(state => state.session.user);
+    const booking = useSelector(state => state.bookings[id])
 
-    const [startDate, setStartDate] = useState('')
-    const [endDate, setEndDate] = useState('');
+    const [startDate, setStartDate] = useState(booking.startDate.split(' ')[0])
+    const [endDate, setEndDate] = useState(booking.endDate.split(' ')[0]);
     const [errors, setErrors] = useState({});
 
     const reserve = (e) => {
         e.preventDefault();
         if (sessionUser) {
             setErrors({});
-            dispatch(addBooking(id, { startDate, endDate }))
-                .then(data => history.push(`/spots/${id}/bookings/${data.id}`))
+            dispatch(editBooking(id, { startDate, endDate }))
+                .then(() => onClose())
+                .then(() => dispatch(loadSpotBookings(spotId)))
                 .catch(
                     async (res) => {
                         const data = await res.json();
@@ -39,19 +41,12 @@ function BookingForm({ id }) {
     }
 
     return (
-        <div className='booking-form'>
-            <div className='booking-form-top-info'>
-                <div>
-                    <h3>
-                        {`$${spot.price}`}
-                    </h3>
-                    <p>night</p>
-                </div>
-                <div>
-                    <ReviewStarDisplay id={id} />
-                    <p>-</p>
-                    <div className='booking-review-count'>{`${spot.numReviews} reviews`}</div>
-                </div>
+        <div className='edit-booking-form'>
+            <div className='booking-form-title'>
+                <button className='booking-form-close-btn' onClick={onClose}>
+                    <i className="fa-solid fa-xmark"></i>
+                </button>
+                <p className="booking-text">Edit Booking</p>
             </div>
             <form onSubmit={reserve}>
                 <ul>
@@ -108,4 +103,4 @@ function BookingForm({ id }) {
     );
 }
 
-export default BookingForm;
+export default EditBookingForm;

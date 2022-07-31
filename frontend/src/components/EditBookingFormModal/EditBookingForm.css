@@ -1,0 +1,45 @@
+.edit-booking-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 20px 30px;
+    background: white;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.booking-form-title {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(234, 234, 234);
+    height: 50px;
+}
+
+.booking-form-close-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 6%;
+    left: 6%;
+    background-color: white;
+    font-size: 18px;
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.booking-form-close-btn:hover {
+    background-color: rgb(246, 246, 246);
+}
+
+.booking-text {
+    display: flex;
+    position: fixed;
+    top: 8%;
+    left: 45%;
+}

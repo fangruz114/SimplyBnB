@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { loadSpotBookings, removeBooking } from '../../store/bookings';
 import { loadOneSpot } from '../../store/spots';
-// import SimpleMap from '../GoogleMap';
+import EditBookingModal from '../EditBookingFormModal';
 import './BookingConfirmation.css';
 
 function BookingConfirmation() {
@@ -70,10 +70,7 @@ function BookingConfirmation() {
                                 <p>Show listing</p>
                             </Link>
                             {new Date(booking.endDate) >= new Date() ? (
-                                <button>
-                                    <i className="fa-solid fa-pen-to-square"></i>
-                                    <p>Edit Booking</p>
-                                </button>
+                                <EditBookingModal spotId={spotId} id={id} />
                             ) : ''}
                             {new Date(booking.startDate) >= new Date() ? (
                                 <button onClick={cancelBooking}>
