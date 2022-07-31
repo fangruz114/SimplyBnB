@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loadUserSpots, removeSpot } from '../../store/spots';
 import ListingFormModal from '../ListingFormModal';
 import ImageFormModal from '../ImageFormModal';
@@ -27,7 +28,9 @@ function ListingListByYou({ id }) {
         <>
             {isloaded && spotsByYou.map(spot => (
                 <div key={spot.id} className="profile-spot-ind">
-                    <img src={spot.previewImage} alt='spot-preview' />
+                    <Link to={`/spots/${spot.id}`}>
+                        <img className='manage-listing-spot-main-img' src={spot.previewImage} alt='spot-preview' />
+                    </Link>
                     <div className='listing-edit-info-bar'>
                         <div className='spot-listing-info'>
                             <SpotImages spotId={spot.id} />
