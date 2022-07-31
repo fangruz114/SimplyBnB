@@ -24,7 +24,7 @@ function ReviewListByYou({ id }) {
     }
     return (
         <>
-            {isloaded && reviewsByYou.map(review => (
+            {isloaded && reviewsByYou?.map(review => (
                 <div key={review.id} className="profile-review-ind">
                     <img src={review.Spot.previewImage} alt='spot-preview' />
                     <div className='review-content-by-you'>
