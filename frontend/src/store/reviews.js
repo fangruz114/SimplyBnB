@@ -1,6 +1,7 @@
 import { csrfFetch } from './csrf';
 
 const GET_REVIEWS = 'reviews/getReviews';
+const UPDATE_REVIEWS_DELETE = 'reviews/updateReviewsAfterDelete'
 const CREATE_REVIEW = 'reviews/createReview';
 const DELETE_REVIEW = 'reviews/deleteReview';
 
@@ -10,6 +11,13 @@ const getReviews = (payload) => {
         payload,
     };
 };
+
+const updateReviewsAfterDelete = (payload) => {
+    return {
+        type: UPDATE_REVIEWS_DELETE,
+        payload,
+    }
+}
 
 const createReview = (payload) => {
     return {
@@ -28,6 +36,7 @@ const deleteReview = (id) => {
 export const loadSpotReviews = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}/reviews`);
     const data = await response.json();
+    console.log('data', data)
     dispatch(getReviews(data.Reviews));
     return response;
 };
@@ -36,6 +45,13 @@ export const loadUserReviews = (id) => async dispatch => {
     const response = await csrfFetch(`/api/users/${id}/reviews`);
     const data = await response.json();
     dispatch(getReviews(data.Reviews));
+    return response;
+};
+
+export const updateUserReviews = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/users/${id}/reviews`);
+    const data = await response.json();
+    dispatch(updateReviewsAfterDelete(data.Reviews));
     return response;
 };
 
@@ -81,6 +97,10 @@ const reviewsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_REVIEWS:
+            newState = Object.assign({}, state);
+            action.payload.map(review => newState[review.id] = review);
+            return newState;
+        case UPDATE_REVIEWS_DELETE:
             newState = Object.assign({});
             action.payload.map(review => newState[review.id] = review);
             return newState;

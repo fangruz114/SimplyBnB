@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadUserReviews, removeReview } from '../../store/reviews';
+import { loadUserReviews, removeReview, updateUserReviews } from '../../store/reviews';
 import ReviewFormModal from '../ReviewFormModal';
 // import ImageFormModal from '../ImageFormModal';
 import './ReviewListByYou.css';
@@ -12,7 +12,7 @@ function ReviewListByYou({ id }) {
     const reviewsByYou = reviews.filter(review => review.userId === Number(id));
 
     useEffect(() => {
-        dispatch(loadUserReviews(id))
+        dispatch(updateUserReviews(id))
             .then(() => setIsloaded(true));
     }, [dispatch, id])
 
