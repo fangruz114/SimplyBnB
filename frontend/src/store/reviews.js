@@ -81,7 +81,7 @@ const reviewsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_REVIEWS:
-            newState = Object.assign({}, state);
+            newState = Object.assign({});
             action.payload.map(review => newState[review.id] = review);
             return newState;
         case CREATE_REVIEW:

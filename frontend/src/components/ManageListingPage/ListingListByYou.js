@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUserSpots, removeSpot } from '../../store/spots';
+import { loadUserReviews } from '../../store/reviews';
 import ListingFormModal from '../ListingFormModal';
 import './ListingListByYou.css';
 
@@ -34,7 +35,10 @@ function ListingListByYou({ id }) {
                         </div>
                         <div className='listing-change'>
                             <ListingFormModal spotId={spot.id} change='Edit Listing' />
-                            <button className='delete-spots' onClick={() => dispatch(removeSpot(spot.id))}>Delete Listing</button>
+                            <button className='delete-spots' onClick={() =>
+                                dispatch(removeSpot(spot.id))
+                                    .then(dispatch(loadUserReviews(id)))
+                            }>Delete Listing</button>
                         </div>
                     </div>
                 </div>
