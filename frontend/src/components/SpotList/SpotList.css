@@ -87,12 +87,14 @@
 }
 
 .spot-details {
-    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     margin-right: 13px;
     font-size: 14px;
     color: rgb(126, 126, 126);
+    display: block;
+    max-width: 80%;
+    word-wrap: break-word;
 }
 
 .spot-name {
