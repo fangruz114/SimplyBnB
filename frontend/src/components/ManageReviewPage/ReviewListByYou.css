@@ -38,6 +38,9 @@
     font-weight: 100;
     font-size: 14px;
     margin-bottom: 15px;
+    display: block;
+    max-width: 90%;
+    word-wrap: break-word;
 }
 
 .review-content-by-you .review-change {
