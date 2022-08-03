@@ -112,7 +112,7 @@
     border-top: 1px solid rgb(216, 216, 216);
     padding: 30px 10px 30px 0px;
     font-size: 20px;
-    width: 80%;
+    max-width: 80%;
 }
 
 .reviews .review-section-top-part {
