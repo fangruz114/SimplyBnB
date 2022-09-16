@@ -7,11 +7,13 @@ function ManageReviewPage() {
     const { id } = useParams();
 
     return (
-        <div className="review-by-you">
-            <h1>Reviews by you</h1>
-            <div className="past-reviews-you-wrote">
-                <p>Past reviews you've written</p>
-                <ReviewListByYou id={id} />
+        <div className='manage-reviews-wrapper'>
+            <div className="review-by-you">
+                <h1>Reviews by you</h1>
+                <div className="past-reviews-you-wrote">
+                    <p>Past reviews you've written</p>
+                    <ReviewListByYou id={id} />
+                </div>
             </div>
         </div>
     )

@@ -1,15 +1,25 @@
+.manage-reviews-wrapper {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .review-by-you {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 55%;
-    position: absolute;
-    top: 7%;
-    left: 19%;
-    padding: 10px 20px;
+    width: 100%;
+    min-width: 390px;
+    max-width: 1400px;
+    position: relative;
+    top: 60px;
+    left: 1%;
+    padding: 10px 10px;
     margin: 30px 5px;
-    z-index: -1;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 .review-by-you h1 {
@@ -22,6 +32,8 @@
     padding: 2px;
     margin: 5px 30px 5px 5px;
     border: 1px solid rgb(220, 224, 224);
+    width: 98%;
+    min-width: 390px;
 }
 
 .review-by-you .past-reviews-you-wrote>p {

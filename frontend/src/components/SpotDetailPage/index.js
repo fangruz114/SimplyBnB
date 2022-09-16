@@ -55,9 +55,9 @@ function SpotDetailPage() {
                                     <div className='star-rating-display'>
                                         <i className="fa-solid fa-star"></i>
                                         <p>{spot.avgStarRating ? spot.avgStarRating.toFixed(2) : 'New'}</p>
+                                        <p> - </p>
+                                        <div>{`${spot.numReviews} reviews`}</div>
                                     </div>
-                                    <p> - </p>
-                                    <div>{`${spot.numReviews} reviews`}</div>
                                     <ReviewFormModal user={sessionUser} spotId={spot.id} change='Add' reviewId='' />
                                 </div>
                                 <div className='review-list'>

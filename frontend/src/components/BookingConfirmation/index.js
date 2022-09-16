@@ -47,7 +47,7 @@ function BookingConfirmation() {
                                 </Link>
                             </div>
                             <div className='spot-img-spot-info'>
-                                <div>{`Your stay at ${spot.Owners.firstName}'s place`}</div>
+                                <p>{`Your stay at ${spot.Owners.firstName}'s place`}</p>
                             </div>
                         </div>
                         <div className='booking-conf-detail-info'>

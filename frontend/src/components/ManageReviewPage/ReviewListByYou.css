@@ -1,36 +1,48 @@
 .profile-review-ind {
-    padding: 20px;
-    margin: 20px;
+    width: 100%;
+    min-width: 390px;
+    padding: 20px 10px;
+    margin: 10px;
     border-bottom: 1px solid rgb(220, 224, 224);
     display: flex;
     flex-direction: row;
-
+    box-sizing: border-box;
 }
 
-.profile-review-ind img {
+.profile-review-ind>img {
     border-radius: 10px;
-    max-height: 75px;
-    max-width: 75px;
+    height: 100px;
+    max-width: 20%;
     padding: 2px;
     margin-right: 20px;
 }
 
 .review-content-by-you {
-    width: 100%
+    width: 70%;
 }
 
 .review-content-by-you h3 {
     color: rgb(72, 72, 72);
     font-size: 16px;
     margin-bottom: 10px;
+    overflow-wrap: anywhere;
+    width: 100%;
 }
 
 .review-content-by-you .review-images {
     display: flex;
     flex-direction: row;
-    max-height: 50px;
+    max-height: 70px;
     margin: 5px 5px 10px 5px;
 
+}
+
+.review-content-by-you .review-images img {
+    border-radius: 10px;
+    height: auto;
+    max-width: 70px;
+    padding: 2px;
+    margin-right: 20px;
 }
 
 .review-content-by-you .review-images:hover button {
@@ -51,6 +63,7 @@
     text-align: center;
     align-items: center;
     visibility: hidden;
+    cursor: pointer;
 }
 
 .review-content-by-you .review-images button:hover {
@@ -70,6 +83,8 @@
 .review-content-by-you .review-change {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 40px;
 }
 
 .review-change button {
@@ -79,16 +94,19 @@
     border: 1px solid rgb(110, 110, 110);
     background: transparent;
     height: 35px;
+    min-width: 100px;
     width: 150px;
-    position: relative;
-    left: 40%;
+    max-width: 150px;
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     cursor: pointer;
     margin-left: 20px;
+    position: relative;
+    left: 0;
+    padding: 3px;
 }
 
-.review-change button:hover {
+.review-change button.add .review-change button:hover {
     background-color: rgb(247, 247, 247);
 }
