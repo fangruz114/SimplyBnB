@@ -79,5 +79,9 @@ nav {
 
 .nav-link {
     display: flex;
-    margin: 0px 10px 0px;
+    margin: 0 30px 0 0;
+}
+
+.nav-link button {
+    margin: 0 7px 0 0;
 }
