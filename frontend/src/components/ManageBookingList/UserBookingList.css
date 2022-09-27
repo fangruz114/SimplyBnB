@@ -1,7 +1,7 @@
 .user-booking-ind-container {
     height: 100px;
     width: 30%;
-    margin: 20px 20px 20px 20px;
+    min-width: 350px;
 }
 
 .user-booking-ind-container a {
@@ -12,7 +12,7 @@
 .user-booking-ind {
     display: flex;
     flex-direction: row;
-    height: 80%;
+    height: 100%;
     width: 100%;
     box-sizing: border-box;
 }

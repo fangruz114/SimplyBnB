@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loadUserReviews, removeReview, updateUserReviews } from '../../store/reviews';
 import ReviewFormModal from '../ReviewFormModal';
 import ImageFormModal from '../ImageFormModal';
@@ -24,10 +25,12 @@ function ReviewListByYou({ id }) {
         return dateNeeded;
     }
     return (
-        <>
+        <div className='review-by-you-wrapper'>
             {isloaded && reviewsByYou?.map(review => (
                 <div key={review.id} className="profile-review-ind">
-                    <img src={review.Spot.previewImage} alt='spot-preview' />
+                    <Link to={`/spots/${review.Spot.id}`}>
+                        <img src={review.Spot.previewImage} alt='spot-preview' />
+                    </Link>
                     <div className='review-content-by-you'>
                         <h3>Review for {review.Spot.name}</h3>
                         <p>{review.review}</p>
@@ -55,7 +58,7 @@ function ReviewListByYou({ id }) {
                     </div>
                 </div>
             ))}
-        </>
+        </div>
     );
 }
 

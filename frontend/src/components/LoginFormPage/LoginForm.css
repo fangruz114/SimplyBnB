@@ -8,6 +8,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
+    max-width: 95vw;
+    max-height: 80vh;
+    overflow: auto;
     padding: 20px 30px;
     background: white;
     box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
