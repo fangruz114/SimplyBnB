@@ -6,10 +6,12 @@ function ManageBookingList() {
     const { id } = useParams();
 
     return (
-        <div className='user-trip-list'>
-            <h1>Trips</h1>
-            <div className='user-booking-list-container'>
-                <UserBookingList userId={id} />
+        <div className='user-trip-list-wrapper'>
+            <div className='user-trip-list'>
+                <h1>Trips</h1>
+                <div className='user-booking-list-container'>
+                    <UserBookingList userId={id} />
+                </div>
             </div>
         </div>
     );

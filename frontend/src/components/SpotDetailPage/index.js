@@ -23,17 +23,19 @@ function SpotDetailPage() {
 
 
     return (
-        <>
+        <div className='spot-detail-wrapper'>
             {isLoaded && (
                 <div className='spot-detail-page'>
                     <h2>{spot.name}</h2>
                     <div className='sub-info'>
-                        <div className='star-rating-display'>
-                            <i className="fa-solid fa-star"></i>
-                            <p>{spot.avgStarRating ? spot.avgStarRating.toFixed(2) : 'New'}</p>
-                        </div>
-                        <p> - </p>
-                        <div>{`${spot.numReviews} reviews`}</div>
+                        <>
+                            <div className='star-rating-display'>
+                                <i className="fa-solid fa-star"></i>
+                                <p>{spot.avgStarRating ? spot.avgStarRating.toFixed(2) : 'New'}</p>
+                            </div>
+                            <p> - </p>
+                            <div>{`${spot.numReviews} reviews`}</div>
+                        </>
                         <div className='spot-details-city'>{`${spot.city}, ${spot.state}, ${spot.country}`}</div>
                     </div>
                     <div className='image-layout'>
@@ -74,7 +76,7 @@ function SpotDetailPage() {
             <Route path='/bookings/:id'>
                 <BookingConfirmation spotId={id} />
             </Route>
-        </>
+        </div>
     );
 }
 

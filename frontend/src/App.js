@@ -9,6 +9,7 @@ import ManageReviewPage from "./components/ManageReviewPage";
 import ManageListingPage from "./components/ManageListingPage";
 import BookingConfirmation from "./components/BookingConfirmation";
 import ManageBookingList from "./components/ManageBookingList";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
           <BookingConfirmation />
         </Route>
       </Switch>
+      <Footer />
     </>
   );
 }

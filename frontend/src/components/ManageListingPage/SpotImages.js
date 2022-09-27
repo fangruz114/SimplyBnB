@@ -19,7 +19,7 @@ function SpotImages({ spotId }) {
             <div className='manage-listing-spot-images'>
                 {isloaded && images && images.length > 0 ?
                     images.map((image) => (
-                        <>
+                        <div className='listing-addtl-image-ind'>
                             <img key={image.id} src={image.url} alt='spot-img-ind' />
                             <button
                                 className='delete-spot-addtl-img'
@@ -29,7 +29,7 @@ function SpotImages({ spotId }) {
                             >
                                 x
                             </button>
-                        </>
+                        </div>
                     ))
                     : ''}
             </div>
