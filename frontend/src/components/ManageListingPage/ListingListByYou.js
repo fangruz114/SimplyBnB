@@ -26,7 +26,7 @@ function ListingListByYou({ id }) {
         return dateNeeded;
     }
     return (
-        <>
+        <div className='profile-spots-wrapper'>
             {isloaded && spotsByYou.map(spot => (
                 <div key={spot.id} className="profile-spot-ind">
                     <div className='profile-spot-ind-left-panel'>
@@ -53,7 +53,7 @@ function ListingListByYou({ id }) {
                 </div>
             ))
             }
-        </>
+        </div>
     );
 }
 export default ListingListByYou;

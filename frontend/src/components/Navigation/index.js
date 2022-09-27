@@ -23,21 +23,23 @@ const Navigation = ({ isLoaded }) => {
         );
     }
     return (
-        <>
+        <div className='nav-wrapper'>
             <nav>
-                <div className='logo'>
-                    <Link to='/'>
-                        <img src='https://i.imgur.com/8wPO9DG.png' alt='logo' />
-                        <div className='site-name'>Simplybnb</div>
-                    </Link>
+                <div className='nav-container'>
+                    <div className='logo'>
+                        <Link to='/'>
+                            <img src='https://i.imgur.com/8wPO9DG.png' alt='logo' />
+                            <div className='site-name'>Simplybnb</div>
+                        </Link>
+                    </div>
+                    <ul className='nav-menu'>
+                        <li className='nav-link'>
+                            {sessionLinks}
+                        </li>
+                    </ul>
                 </div>
-                <ul className='nav-menu'>
-                    <li className='nav-link'>
-                        {sessionLinks}
-                    </li>
-                </ul>
             </nav>
-        </>
+        </div>
     )
 }
 

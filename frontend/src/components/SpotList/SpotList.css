@@ -1,15 +1,21 @@
+.spot-list-wrapper {
+    width: 100vw;
+    height: auto;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .all-spots {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    width: 70%;
-    position: absolute;
-    top: 7%;
-    left: 14%;
+    width: 100%;
+    max-width: 1760px;
     padding: 10px 5px;
-    margin: 30px 5px;
-    z-index: -1;
+    margin: 10px 5px;
     font-family: 'Poppins', sans-serif;
 }
 

@@ -14,29 +14,30 @@ function SpotList() {
     }, [dispatch]);
 
     return (
-        <div className='all-spots'>
-            {spots && (
-                spots.map(spot => (
-                    <Link key={spot.id} to={`/spots/${spot.id}`}>
-                        <div className='spot-card'>
-                            <div className='spot-image'>
-                                <img className='spot-img-display' src={spot.previewImage} alt='previewImage' />
-                            </div>
-                            <div className='spot-info'>
-                                <div className='spot-details'>
-                                    <div className='spot-name'>{spot.name}</div>
-                                    <div>{`${spot.city}, ${spot.state}`}</div>
-                                    <div className='spot-price'><span>${spot.price}</span>night</div>
+        <div className='spot-list-wrapper'>
+            <div className='all-spots'>
+                {spots && (
+                    spots.map(spot => (
+                        <Link key={spot.id} to={`/spots/${spot.id}`}>
+                            <div className='spot-card'>
+                                <div className='spot-image'>
+                                    <img className='spot-img-display' src={spot.previewImage} alt='previewImage' />
                                 </div>
-                                <div className='spot-review'>
-                                    <ReviewStarDisplay id={spot.id} />
+                                <div className='spot-info'>
+                                    <div className='spot-details'>
+                                        <div className='spot-name'>{spot.name}</div>
+                                        <div>{`${spot.city}, ${spot.state}`}</div>
+                                        <div className='spot-price'><span>${spot.price}</span>night</div>
+                                    </div>
+                                    <div className='spot-review'>
+                                        <ReviewStarDisplay id={spot.id} />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </Link>
-                ))
-            )}
-
+                        </Link>
+                    ))
+                )}
+            </div>
         </div>
 
     )

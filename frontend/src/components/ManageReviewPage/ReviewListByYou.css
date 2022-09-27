@@ -1,6 +1,13 @@
+.review-by-you-wrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
 .profile-review-ind {
     width: 100%;
-    min-width: 390px;
     padding: 20px 10px;
     margin: 10px;
     border-bottom: 1px solid rgb(220, 224, 224);
@@ -9,12 +16,20 @@
     box-sizing: border-box;
 }
 
-.profile-review-ind>img {
-    border-radius: 10px;
+.profile-review-ind a {
     height: 100px;
-    max-width: 20%;
+    width: 100px;
+    max-width: 28%;
     padding: 2px;
     margin-right: 20px;
+}
+
+.profile-review-ind a>img {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    /* padding: 2px;
+    margin-right: 20px; */
 }
 
 .review-content-by-you {
@@ -81,10 +96,11 @@
 }
 
 .review-content-by-you .review-change {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding-right: 40px;
+    padding-right: auto;
 }
 
 .review-change button {
@@ -93,10 +109,11 @@
     align-items: center;
     border: 1px solid rgb(110, 110, 110);
     background: transparent;
-    height: 35px;
+    height: auto;
+    min-height: 35px;
     min-width: 100px;
-    width: 150px;
     max-width: 150px;
+    width: 100%;
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
