@@ -35,7 +35,7 @@ function BookingConfirmation() {
     }
 
     return (
-        <>
+        <div className='booking-confirmation-wrapper'>
             {(isLoaded && booking) &&
                 (<div className='booking-confirmation'>
                     <div className='booking-conf-left-panel'>
@@ -84,11 +84,13 @@ function BookingConfirmation() {
                         <iframe
                             src={`https://www.google.com/maps?q=${spot.lat},${spot.lng}&hl=es;&output=embed`}
                             title={spot.id}
-                            width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                            width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade">
+
+                        </iframe>
                     </div>
                 </div>
                 )}
-        </>
+        </div>
     );
 }
 
