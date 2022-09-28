@@ -16,7 +16,7 @@ function ReviewListByYou({ id }) {
     useEffect(() => {
         dispatch(updateUserReviews(id))
             .then(() => setIsloaded(true));
-    }, [dispatch, id, reviewsByYou])
+    }, [dispatch, id])
 
     function convertDate(string) {
         const date = new Date(string);
@@ -43,6 +43,7 @@ function ReviewListByYou({ id }) {
                                         className='delete-review-addtl-img'
                                         onClick={(e) => {
                                             dispatch(removeImage(image.id))
+                                                .then(() => dispatch(updateUserReviews(id)))
                                         }}
                                     >
                                         x
