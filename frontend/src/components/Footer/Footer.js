@@ -12,7 +12,7 @@ function Footer() {
                 >
                     <p>Source Code</p>
                 </a>
-                <a href="https://github.com/fangruz114/Lizuvia"
+                <a href="https://github.com/fangruz114/SimplyBnB"
                     rel="noopener noreferrer"
                     target="_blank"
                 >
@@ -34,8 +34,7 @@ function Footer() {
                         rel="noopener noreferrer"
                         target="_blank"
                     >
-                        <img src="https://img.icons8.com/ios-filled/50/000000/portfolio.png" alt='portfolio-site' />
-                        <p className="developer-name">Fangru Zhou</p>
+                        <i className="fa-solid fa-folder-open"></i>
                     </a>
                 </div>
             </div>
