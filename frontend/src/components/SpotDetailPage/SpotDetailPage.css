@@ -1,7 +1,7 @@
 .spot-detail-wrapper {
     width: 100vw;
     height: auto;
-    min-height: 80vw;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -59,18 +59,22 @@
     flex-direction: row;
     flex-wrap: wrap;
     height: auto;
+    max-height: 60vh;
     width: 100%;
+    aspect-ratio: 1/0.50;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .image-layout .spot-detail-main-img {
-    height: auto;
+    height: 100%;
     width: 50%;
-    min-width: 370px;
-    min-height: 370px;
-    max-height: 750px;
-    padding: 10px 10px 10px 0;
-    border-radius: 20px;
     object-fit: cover;
+    object-position: 50% 50%;
+    overscroll-behavior: auto;
+    white-space: nowrap;
+    aspect-ratio: 1/0.47;
+
 }
 
 .image-layout .side-images {
@@ -78,31 +82,34 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 50%;
-    min-width: 370px;
-    height: auto;
+    height: 100%;
+    padding: 0;
+    gap: 8px;
+    overflow: auto;
+    padding-left: 8px;
 }
 
 .image-layout .side-images img {
-    height: 50%;
-    min-height: 180px;
-    max-height: 370px;
-    min-width: 180px;
-    width: 50%;
+    display: grid;
+    width: calc(50% - 4px);
+    height: calc(50% - 4px);
     object-fit: cover;
-    box-sizing: border-box;
-    padding: 10px 10px 10px 0;
-    border-radius: 20px;
+    object-position: 50% 50%;
+    border: none;
 }
 
 .spot-infomation {
     margin-top: 30px;
-    width: 80%;
+    width: 100%;
+    max-width: 1022px;
 }
 
 .spot-infomation p {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
+    font-weight: bold;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .spot-infomation .spot-description {
@@ -152,32 +159,11 @@
     width: 100%;
 }
 
-.add-review-btn {
-    display: flex;
-    justify-content: flex-end;
-    width: 70%;
-    min-width: 100px;
-}
-
-.add-review-btn button {
-    border: 1px solid rgb(0, 0, 0);
-    background: transparent;
-    height: 50px;
-    width: 40%;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.add-review-btn button:hover {
-    background-color: rgb(247, 247, 247);
-}
-
 .bottom-half {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
     height: auto;
 }
@@ -185,7 +171,7 @@
 .left-panel {
     width: 67%;
     min-width: 350px;
-    margin-right: 20px;
+    padding-right: 5%;
 }
 
 .right-panel {

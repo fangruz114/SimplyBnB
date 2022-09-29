@@ -24,7 +24,8 @@
     box-sizing: border-box;
     width: 50%;
     height: 100%;
-    gap: 2rem;
+    gap: 1.5rem;
+    padding: 0 2rem;
 }
 
 .source-code {
@@ -42,7 +43,8 @@
     color: black;
 }
 
-.linkedin-container a>.fa-linkedin {
+.linkedin-container a>.fa-linkedin,
+.linkedin-container a>.fa-folder-open {
     font-size: 24px;
     color: black;
 }
@@ -55,6 +57,7 @@
     justify-content: center;
     width: 50%;
     gap: 2em;
+    padding: 0 2rem;
 }
 
 .connect-with-us-container .linkedin-container {
@@ -73,25 +76,9 @@
     text-decoration: none;
 }
 
-.linkedin-container a img {
-    height: 23px;
-    width: auto;
-}
-
-.developer-name {
-    font-size: 1rem;
-    letter-spacing: 0.2px;
-    text-decoration: none;
-    color: black;
-    font-size: 14px;
-    line-height: 18px;
-}
-
-.fa-linkedin {
-    font-size: 1.75rem;
-}
-
-.fa-linkedin:hover,
-.linkedin-container a:hover {
+.home-page-about a>.fa-github:hover,
+.linkedin-container a>.fa-linkedin:hover,
+.linkedin-container a>.fa-folder-open:hover {
     cursor: pointer;
+    color: rgb(255, 57, 92);
 }

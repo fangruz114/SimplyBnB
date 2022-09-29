@@ -12,19 +12,19 @@ function SpotImages({ spotId }) {
     useEffect(() => {
         dispatch(loadOneSpot(spotId))
             .then(() => setIsloaded(true));
-    }, [dispatch, spotId, images])
+    }, [dispatch, spotId])
 
     return (
         <>
             <div className='manage-listing-spot-images'>
                 {isloaded && images && images.length > 0 ?
                     images.map((image) => (
-                        <div className='listing-addtl-image-ind'>
+                        <div className='listing-addtl-image-ind' key={image.id}>
                             <img key={image.id} src={image.url} alt='spot-img-ind' />
                             <button
                                 className='delete-spot-addtl-img'
                                 onClick={(e) => {
-                                    dispatch(removeImage(image.id))
+                                    dispatch(removeImage(image.id)).then(() => dispatch(loadOneSpot(spotId)))
                                 }}
                             >
                                 x
