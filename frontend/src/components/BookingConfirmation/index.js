@@ -4,6 +4,7 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import { loadSpotBookings, removeBooking } from '../../store/bookings';
 import { loadOneSpot } from '../../store/spots';
 import EditBookingModal from '../EditBookingFormModal';
+import MapPage from '../GoogleMap';
 import './BookingConfirmation.css';
 
 function BookingConfirmation() {
@@ -40,12 +41,12 @@ function BookingConfirmation() {
                 (<div className='booking-confirmation'>
                     <div className='booking-conf-left-panel'>
                         <div className='left-panel-top'>
-                            <img className='spot-image-background' src={spot.previewImage} alt='booking-conf-previewImg' />
                             <div className='go-back-button'>
                                 <Link to={`/users/${user.id}/bookings`}>
                                     <i className="fa-solid fa-arrow-left"></i>
                                 </Link>
                             </div>
+                            <img className='spot-image-background' src={spot.previewImage} alt='booking-conf-previewImg' />
                             <div className='spot-img-spot-info'>
                                 <p>{`Your stay at ${spot.Owners.firstName}'s place`}</p>
                             </div>
@@ -81,12 +82,12 @@ function BookingConfirmation() {
                         </div>
                     </div>
                     <div className='booking-conf-right-panel'>
-                        <iframe
+                        {/* <iframe
                             src={`https://www.google.com/maps?q=${spot.lat},${spot.lng}&hl=es;&output=embed`}
                             title={spot.id}
                             width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade">
-
-                        </iframe>
+                        </iframe> */}
+                        <MapPage currentPosition={{ lat: spot.lat, lng: spot.lng }} zoom={16} markers={[{ lat: spot.lat, lng: spot.lng }]} spots={[]} />
                     </div>
                 </div>
                 )}

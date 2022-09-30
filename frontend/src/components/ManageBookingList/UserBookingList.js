@@ -23,7 +23,7 @@ function UserBookingList({ userId }) {
     return (
         <>
             {userBookings && userBookings.map(booking => (
-                <div className='user-booking-ind-container'>
+                <div className='user-booking-ind-container' key={booking.id}>
                     <Link to={`/spots/${booking.Spot.id}/bookings/${booking.id}`}>
                         <div className='user-booking-ind'>
                             <img className='user-booking-list-preImg' src={booking.Spot.previewImage} alt='booking-spot-preview' />

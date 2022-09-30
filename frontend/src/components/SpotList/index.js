@@ -38,6 +38,10 @@ function SpotList() {
                     ))
                 )}
             </div>
+            <Link className='spot-list-show-map' to='/spots/map'>
+                <p>Show Map</p>
+                <i className="fa-solid fa-map"></i>
+            </Link>
         </div>
 
     )
