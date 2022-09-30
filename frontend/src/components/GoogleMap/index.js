@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 
 const MapPage = ({ currentPosition, zoom, markers, spots }) => {
+
+    const { lat, lng } = currentPosition;
     console.log('current position', currentPosition)
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -29,12 +31,12 @@ const MapPage = ({ currentPosition, zoom, markers, spots }) => {
             {isLoaded && <GoogleMap
                 mapContainerStyle={containerStyle}
                 zoom={zoom}
-                center={currentPosition}
+                center={{ lat: Number(lat), lng: Number(lng) }}
                 onUnmount={onUnmount}
             >
                 {markers.length > 0 && markers.map((marker, idx) =>
                     <Marker key={idx}
-                        position={{ lat: marker.lat, lng: marker.lng }}
+                        position={{ lat: Number(marker.lat), lng: Number(marker.lng) }}
                         title='Where you stay'
                         icon={image}
                         clickable={true}
@@ -42,7 +44,7 @@ const MapPage = ({ currentPosition, zoom, markers, spots }) => {
                 )}
                 {spots.length > 0 && spots.map((spot) =>
                     <InfoWindow key={spot.id}
-                        position={{ lat: spot.lat, lng: spot.lng }}
+                        position={{ lat: Number(spot.lat), lng: Number(spot.lng) }}
                         options={{ disableAutoPen: true }}
                     >
                         <Link className="google-map-infowindow" to={`/spots/${spot.id}`}>
