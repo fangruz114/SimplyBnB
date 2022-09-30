@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 const MapPage = ({ currentPosition, zoom, markers, spots }) => {
-
+    console.log('current position', currentPosition)
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
