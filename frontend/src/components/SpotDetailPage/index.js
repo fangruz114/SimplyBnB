@@ -7,6 +7,7 @@ import ReviewFormModal from '../ReviewFormModal';
 import BookingConfirmation from '../BookingConfirmation';
 import './SpotDetailPage.css';
 import BookingForm from '../BookingForm';
+import MapPage from '../GoogleMap';
 
 
 function SpotDetailPage() {
@@ -69,6 +70,12 @@ function SpotDetailPage() {
                         </div>
                         <div className='right-panel'>
                             <BookingForm id={spot.id} />
+                        </div>
+                    </div>
+                    <div className='spot-detail-map'>
+                        <p>Where you'll be</p>
+                        <div className='spot-detail-map-display'>
+                            <MapPage currentPosition={{ lat: spot.lat, lng: spot.lng }} zoom={16} markers={[{ lat: spot.lat, lng: spot.lng }]} spots={[]} />
                         </div>
                     </div>
                 </div>

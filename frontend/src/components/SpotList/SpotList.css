@@ -3,8 +3,9 @@
     height: auto;
     min-height: 88vh;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .all-spots {
@@ -120,4 +121,54 @@
     flex-direction: row;
     justify-content: flex-end;
     padding-top: 8px;
+}
+
+.spot-lists-map {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+a.spot-list-show-map {
+    position: fixed;
+    bottom: 8%;
+    background-color: rgb(34, 34, 34);
+    z-index: 1;
+    height: 48px;
+    width: 132.45px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    outline: none;
+    margin: 0px;
+    padding: 14px 19px;
+    cursor: pointer;
+    touch-action: manipulation;
+    gap: 0.5rem;
+    transition: width 0.25s ease, height 0.25s ease, font-size 0.25s ease;
+}
+
+a.spot-list-show-map:hover {
+    width: 134px;
+    height: 50px;
+    font-size: 15px;
+}
+
+a.spot-list-show-map p,
+a.spot-list-show-map .fa-map,
+a.spot-list-show-map .fa-list {
+    color: white;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+a.google-map-infowindow {
+    text-decoration: none;
+    color: black;
 }

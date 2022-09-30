@@ -10,7 +10,7 @@ function ListingForm({ spotId, onClose, change }) {
     const [city, setCity] = useState(listingToEdit ? listingToEdit.city : "");
     const [state, setState] = useState(listingToEdit ? listingToEdit.state : "");
     const [country, setCountry] = useState(listingToEdit ? listingToEdit.country : "");
-    const [lat, setLat] = useState(listingToEdit && listingToEdit != 0 ? listingToEdit.lat : '');
+    const [lat, setLat] = useState(listingToEdit && listingToEdit !== 0 ? listingToEdit.lat : '');
     const [lng, setLng] = useState(listingToEdit ? listingToEdit.lng : '');
     const [name, setName] = useState(listingToEdit ? listingToEdit.name : "");
     const [description, setDescription] = useState(listingToEdit ? listingToEdit.description : "");
