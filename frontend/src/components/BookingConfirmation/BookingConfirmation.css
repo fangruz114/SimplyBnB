@@ -12,7 +12,7 @@
     width: 100%;
     height: 88vh;
     padding: 10px 5px;
-    margin: 27px 2px;
+    margin: 0 2px;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -22,6 +22,7 @@
     min-width: 370px;
 }
 
+
 .booking-conf-left-panel {
     display: flex;
     flex-direction: column;
@@ -30,8 +31,15 @@
     height: 100%;
     background: white;
     box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
     border-radius: 5px;
+    padding: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .booking-conf-right-panel {
+        visibility: hidden;
+        display: none;
+    }
 }
 
 .left-panel-top {
@@ -44,23 +52,29 @@
 
 
 .left-panel-top .spot-image-background {
-    max-width: 150%;
-    max-height: 150%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 5px;
 }
 
 .left-panel-top .go-back-button {
+    height: 0;
+}
+
+.left-panel-top .go-back-button>a {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 30px;
+    position: relative;
+    top: 20px;
     left: 27px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background-color: white;
+    z-index: 1;
+    text-decoration: none;
 }
 
 .left-panel-top .go-back-button .fa-arrow-left {
@@ -111,8 +125,8 @@
     align-items: flex-start;
     position: relative;
     right: -20px;
-    width: 42%;
-    padding: 20px 0px 20px 10px;
+    width: 40%;
+    padding: 20px 10px 20px 20px;
 }
 
 .checkin-checkout .checkin {
@@ -121,7 +135,6 @@
 }
 
 .checkin-checkout .checkout {
-    padding-left: 30px;
     border-bottom: 1px solid rgb(212, 211, 211);
 }
 
@@ -144,8 +157,8 @@
     height: 100%;
     text-decoration: none;
     color: black;
-    margin: 0px 40px 0px 40px;
-    padding: 20px 0px 20px 5px;
+    margin: 0px 40px 0px 20px;
+    padding: 20px 0px 20px 20px;
     font-size: 17px;
     border-bottom: 1px solid rgb(212, 211, 211);
 

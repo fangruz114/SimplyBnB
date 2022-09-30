@@ -10,6 +10,7 @@ import ManageListingPage from "./components/ManageListingPage";
 import BookingConfirmation from "./components/BookingConfirmation";
 import ManageBookingList from "./components/ManageBookingList";
 import Footer from "./components/Footer/Footer";
+import SpotListMap from "./components/SpotList/SpotListMap";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
       <Switch>
         <Route exact path={['/', '/spots']}>
           <SpotList />
+        </Route>
+        <Route exact path='/spots/map'>
+          <SpotListMap />
         </Route>
         <Route exact path='/spots/:id'>
           <SpotDetailPage />

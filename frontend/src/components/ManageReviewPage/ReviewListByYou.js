@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loadUserReviews, removeReview, updateUserReviews } from '../../store/reviews';
+import { removeReview, updateUserReviews } from '../../store/reviews';
 import ReviewFormModal from '../ReviewFormModal';
 import ImageFormModal from '../ImageFormModal';
 import { removeImage } from '../../store/images';
