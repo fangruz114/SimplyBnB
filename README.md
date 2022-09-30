@@ -20,6 +20,7 @@ SimplyBnb is a clone of the website Airbnb that provides an online marketplace f
 - Javascript
 - HTML
 - CSS
+- Google Map API
 
 ### Backend
 - Sequelize
