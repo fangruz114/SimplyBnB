@@ -21,7 +21,7 @@ function SpotList() {
                         <Link key={spot.id} to={`/spots/${spot.id}`}>
                             <div className='spot-card'>
                                 <div className='spot-image'>
-                                    <img className='spot-img-display' src={spot.previewImage} alt='previewImage' />
+                                    <img className='spot-img-display' src={spot.previewImage} alt='previewImage' onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                                 </div>
                                 <div className='spot-info'>
                                     <div className='spot-details'>

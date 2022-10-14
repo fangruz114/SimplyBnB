@@ -53,10 +53,11 @@
 
 .review-content-by-you .review-images img {
     border-radius: 10px;
-    height: auto;
-    max-width: 70px;
+    height: 70px;
+    width: 70px;
     padding: 2px;
     margin-right: 20px;
+    object-fit: cover;
 }
 
 .review-content-by-you .review-images:hover button {

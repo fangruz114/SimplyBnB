@@ -1,6 +1,6 @@
 .user-booking-ind-container {
-    height: 100px;
-    width: 30%;
+    height: 150px;
+    width: 45%;
     min-width: 350px;
 }
 
@@ -18,8 +18,9 @@
 }
 
 .user-booking-ind img.user-booking-list-preImg {
-    max-height: 100%;
-    max-width: 100%;
+    height: 100%;
+    width: 50%;
+    max-width: 200px;
     object-fit: cover;
     border-radius: 7px;
     margin: 6px 20px 6px 0px;
@@ -27,10 +28,11 @@
 
 .user-booking-ind .user-booking-info h4 {
     font-weight: 500;
+    font-size: 20px;
     margin: 10px 0px 6px 3px;
 }
 
 .user-booking-ind .user-booking-info p {
-    font-size: 13px;
+    font-size: 15px;
     color: rgb(89, 89, 89);
 }

@@ -23,7 +23,7 @@ const MapPage = ({ currentPosition, zoom, markers, spots }) => {
     }, [])
 
     const image =
-        "https://i.imgur.com/AKnD9rA.png";
+        "https://i.imgur.com/uCSKTmI.png";
 
     return (
         <>

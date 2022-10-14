@@ -20,7 +20,7 @@ function SpotImages({ spotId }) {
                 {isloaded && images && images.length > 0 ?
                     images.map((image) => (
                         <div className='listing-addtl-image-ind' key={image.id}>
-                            <img key={image.id} src={image.url} alt='spot-img-ind' />
+                            <img key={image.id} src={image.url} alt='spot-img-ind' onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                             <button
                                 className='delete-spot-addtl-img'
                                 onClick={(e) => {

@@ -26,7 +26,7 @@ function UserBookingList({ userId }) {
                 <div className='user-booking-ind-container' key={booking.id}>
                     <Link to={`/spots/${booking.Spot.id}/bookings/${booking.id}`}>
                         <div className='user-booking-ind'>
-                            <img className='user-booking-list-preImg' src={booking.Spot.previewImage} alt='booking-spot-preview' />
+                            <img className='user-booking-list-preImg' src={booking.Spot.previewImage} alt='booking-spot-preview' onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                             <div className='user-booking-info'>
                                 <h4>{booking.Spot.city}</h4>
                                 <p>{`${convertDate(booking.startDate)}-${convertDate(booking.endDate)}`}</p>

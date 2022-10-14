@@ -46,7 +46,7 @@ function BookingConfirmation() {
                                     <i className="fa-solid fa-arrow-left"></i>
                                 </Link>
                             </div>
-                            <img className='spot-image-background' src={spot.previewImage} alt='booking-conf-previewImg' />
+                            <img className='spot-image-background' src={spot.previewImage} alt='booking-conf-previewImg' onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                             <div className='spot-img-spot-info'>
                                 <p>{`Your stay at ${spot.Owners.firstName}'s place`}</p>
                             </div>

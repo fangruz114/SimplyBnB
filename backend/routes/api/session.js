@@ -33,15 +33,19 @@ router.post('/', validateLogin, async (req, res, next) => {
 
     const token = await setTokenCookie(res, user);
 
-    const currentUser = {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        token,
-    };
+    // const currentUser = {
+    //     id: user.id,
+    //     firstName: user.firstName,
+    //     lastName: user.lastName,
+    //     email: user.email,
+    //     token,
+    // };
 
-    return res.json(currentUser);
+    // return res.json(currentUser);
+
+    user.dataValues.token = token;
+
+    return res.json(user);
 });
 
 router.delete('/', (_req, res) => {

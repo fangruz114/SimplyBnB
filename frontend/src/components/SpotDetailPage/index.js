@@ -40,10 +40,10 @@ function SpotDetailPage() {
                         <div className='spot-details-city'>{`${spot.city}, ${spot.state}, ${spot.country}`}</div>
                     </div>
                     <div className='image-layout'>
-                        <img className='spot-detail-main-img' src={spot.previewImage} alt={spot.id} />
+                        <img className='spot-detail-main-img' src={spot.previewImage} alt={spot.id} onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                         <div className='side-images'>
                             {spot.images && (spot.images.map((url, index) => (
-                                <img key={index} className='spot-detail-side-img' src={url.url} alt={spot.id} />
+                                <img key={index} className='spot-detail-side-img' src={url.url} alt={spot.id} onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                             )))}
                         </div>
                     </div>

@@ -75,7 +75,7 @@ function EditBookingForm({ onClose, spotId, id }) {
                     </label>
                 </div>
                 <div className="form-element">
-                    <button type="submit">Reserve</button>
+                    <button type="submit">Update</button>
                 </div>
             </form>
             <div className='price-cal'>

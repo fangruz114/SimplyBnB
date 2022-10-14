@@ -29,7 +29,7 @@ function ReviewListByYou({ id }) {
             {isloaded && reviewsByYou?.map(review => (
                 <div key={review.id} className="profile-review-ind">
                     <Link to={`/spots/${review.Spot.id}`}>
-                        <img src={review.Spot.previewImage} alt='spot-preview' />
+                        <img src={review.Spot.previewImage} alt='spot-preview' onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                     </Link>
                     <div className='review-content-by-you'>
                         <h3>Review for {review.Spot.name}</h3>
@@ -38,7 +38,7 @@ function ReviewListByYou({ id }) {
                         <div className='review-images'>
                             {review.Images.length > 0 ? review.Images.map((image) => (
                                 <>
-                                    <img key={image.id} src={image.url} alt='review-img-ind' />
+                                    <img key={image.id} src={image.url} alt='review-img-ind' onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                                     <button
                                         className='delete-review-addtl-img'
                                         onClick={(e) => {

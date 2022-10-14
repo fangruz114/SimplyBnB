@@ -28,7 +28,7 @@ const Navigation = ({ isLoaded }) => {
                 <div className='nav-container'>
                     <div className='logo'>
                         <Link to='/'>
-                            <img src='https://i.imgur.com/8wPO9DG.png' alt='logo' />
+                            <img src='https://i.imgur.com/8wPO9DG.png' alt='logo' onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                             <div className='site-name'>Simplybnb</div>
                         </Link>
                     </div>

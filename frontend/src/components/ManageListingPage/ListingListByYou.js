@@ -31,7 +31,7 @@ function ListingListByYou({ id }) {
                 <div key={spot.id} className="profile-spot-ind">
                     <div className='profile-spot-ind-left-panel'>
                         <Link to={`/spots/${spot.id}`}>
-                            <img className='manage-listing-spot-main-img' src={spot.previewImage} alt='spot-preview' />
+                            <img className='manage-listing-spot-main-img' src={spot.previewImage} alt='spot-preview' onError={e => e.target.src = 'https://i.imgur.com/u5RM3H1.jpg'} />
                         </Link>
                         <div className='listing-edit-info-bar'>
                             <div className='spot-listing-info'>
