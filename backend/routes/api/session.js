@@ -30,7 +30,6 @@ router.post('/', validateLogin, async (req, res, next) => {
         err.message = 'Invalid credentials';
         return next(err);
     };
-    await res.clearCookie('token');
 
     const token = await setTokenCookie(res, user);
 
@@ -50,7 +49,7 @@ router.post('/', validateLogin, async (req, res, next) => {
 });
 
 router.delete('/', (_req, res) => {
-    res.clearCookie('token');
+    res.clearCookie('XSRF-TOKEN');
     return res.json({ message: 'success' });
 });
 
