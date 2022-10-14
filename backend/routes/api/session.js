@@ -30,22 +30,23 @@ router.post('/', validateLogin, async (req, res, next) => {
         err.message = 'Invalid credentials';
         return next(err);
     };
+    await res.clearCookie('token');
 
     const token = await setTokenCookie(res, user);
 
-    // const currentUser = {
-    //     id: user.id,
-    //     firstName: user.firstName,
-    //     lastName: user.lastName,
-    //     email: user.email,
-    //     token,
-    // };
+    const currentUser = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        token,
+    };
 
-    // return res.json(currentUser);
+    return res.json(currentUser);
 
-    user.dataValues.token = token;
+    // user.dataValues.token = token;
 
-    return res.json(user);
+    // return res.json(user);
 });
 
 router.delete('/', (_req, res) => {
