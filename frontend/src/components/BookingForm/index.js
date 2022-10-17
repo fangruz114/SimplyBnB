@@ -13,7 +13,7 @@ function BookingForm({ id }) {
     const spot = useSelector(state => state.spots[id]);
     const sessionUser = useSelector(state => state.session.user);
 
-    const [startDate, setStartDate] = useState(new Date().toISOString().split('T')[0])
+    const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('');
     const [errors, setErrors] = useState({});
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -79,7 +79,7 @@ function BookingForm({ id }) {
                         <input
                             type='date'
                             placeholder='Add date'
-                            value={startDate ? startDate : new Date().toISOString().split('T')[0]}
+                            value={startDate}
                             onChange={e => setStartDate(e.target.value)}
                             min={new Date().toISOString().split('T')[0]}
                             required
@@ -90,7 +90,7 @@ function BookingForm({ id }) {
                         <input
                             type='date'
                             placeholder='Add date'
-                            value={endDate ? endDate : maxDate(startDate, 2)}
+                            value={endDate}
                             onChange={e => setEndDate(e.target.value)}
                             min={startDate}
                             max={startDate ? maxDate(startDate, 180) : ''}
