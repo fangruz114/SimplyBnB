@@ -82,6 +82,7 @@ function BookingForm({ id }) {
                             value={startDate}
                             onChange={e => setStartDate(e.target.value)}
                             min={new Date().toISOString().split('T')[0]}
+                            max='2099-12-31'
                             required
                         />
                     </label>
